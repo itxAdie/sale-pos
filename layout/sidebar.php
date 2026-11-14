@@ -4,7 +4,7 @@
         <!--begin::Sidebar Brand-->
         <div class="sidebar-brand">
           <!--begin::Brand Link-->
-          <a href="./index.html" class="brand-link">
+          <a href="./dashboard.php" class="brand-link">
             <!--begin::Brand Text-->
             <span class="brand-text fw-light">Nomi Shopping Mall</span>
             <!--end::Brand Text-->
@@ -40,7 +40,6 @@
               id="navigation"
             >
               <li class="nav-item">
-                  <li class="nav-item">
                     <a
                       href="./dashboard.php"
                       class="nav-link<?= $currentPage === 'dashboard.php' ? ' active' : '' ?>"
@@ -49,7 +48,6 @@
                       <i class="nav-icon bi bi-speedometer"></i>
                       <p>Dashboard</p>
                     </a>
-                  </li>
               </li>
               <li class="nav-item">
                 <a
@@ -81,13 +79,13 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./products/product-add.html" class="nav-link">
+                    <a href="./product-add.php" class="nav-link">
                       <i class="nav-icon bi bi-cart-plus"></i>
                       <p>Add Product</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./products/generate-tags.html" class="nav-link">
+                    <a href="./generate-tags.php" class="nav-link">
                       <i class="nav-icon bi bi-upc"></i>
                       <p>Genrate Tags</p>
                     </a>
@@ -104,13 +102,13 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="./layout/unfixed-sidebar.html" class="nav-link">
+                    <a href="./all-branches.php" class="nav-link">
                       <i class="nav-icon bi bi-door-closed"></i>
                       <p>All Branches</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./layout/fixed-sidebar.html" class="nav-link">
+                    <a href="./add-branch.php" class="nav-link">
                       <i class="nav-icon bi bi-door-open"></i>
                       <p>Add Branch</p>
                     </a>
@@ -127,13 +125,13 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="./UI/general.html" class="nav-link">
+                    <a href="./all-suppliers.php" class="nav-link">
                       <i class="nav-icon bi bi-people"></i>
                       <p>All Suppliers</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./UI/icons.html" class="nav-link">
+                    <a href="./add-supplier.php" class="nav-link">
                       <i class="nav-icon bi bi-person-add"></i>
                       <p>Add Supplier</p>
                     </a>
@@ -150,13 +148,13 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="./charts/chartjs.html" class="nav-link">
+                    <a href="./all-sales.php" class="nav-link">
                       <i class="nav-icon bi bi-cash-coin"></i>
                       <p>All Sales</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./charts/chartjs.html" class="nav-link">
+                    <a href="./add-sale.php" class="nav-link">
                       <i class="nav-icon bi bi-cash-stack"></i>
                       <p>Add Sale</p>
                     </a>
@@ -173,19 +171,19 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="./charts/chartjs.html" class="nav-link">
+                    <a href="./all-expenses.php" class="nav-link">
                       <i class="nav-icon bi bi-cash-coin"></i>
                       <p>All Expenses</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./charts/chartjs.html" class="nav-link">
+                    <a href="./add-expense.php" class="nav-link">
                       <i class="nav-icon bi bi-cash-stack"></i>
                       <p>Add Expense</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./charts/chartjs.html" class="nav-link">
+                    <a href="./expense-types.php" class="nav-link">
                       <i class="nav-icon bi bi-cash"></i>
                       <p>Expense Type</p>
                     </a>
@@ -202,13 +200,13 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="./mailbox/inbox.html" class="nav-link">
+                    <a href="./all-employees.php" class="nav-link">
                       <i class="nav-icon bi bi-people"></i>
                       <p>All Employees</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./mailbox/read.html" class="nav-link">
+                    <a href="./add-employee.php" class="nav-link">
                       <i class="nav-icon bi bi-person-add"></i>
                       <p>Add Employee</p>
                     </a>
@@ -226,13 +224,13 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="./forms/elements.html" class="nav-link">
+                    <a href="./branch-ledger.php" class="nav-link">
                       <i class="nav-icon bi bi-shop"></i>
                       <p>Branch Ledger</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./forms/layout.html" class="nav-link">
+                    <a href="./supplier-ledger.php" class="nav-link">
                       <i class="nav-icon bi bi-people"></i>
                       <p>Supplier Ledger</p>
                     </a>
@@ -249,19 +247,19 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="./charts/chartjs.html" class="nav-link">
+                    <a href="./sales-report.php" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Sales Report</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./charts/chartjs.html" class="nav-link">
+                    <a href="./expense-report.php" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Expense report</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./charts/chartjs.html" class="nav-link">
+                    <a href="./profit-loss.php" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Profit/Loss Statement</p>
                     </a>
