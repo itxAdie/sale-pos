@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-  <?php include '../include/head.php'; ?>
+  <?php include '../include/page-config.php'; include '../include/head.php'; ?>
   <style>
     @page {
       margin: 0;
@@ -72,29 +72,8 @@
 
       <!--begin::App Main-->
       <main class="app-main">
-        <!--begin::App Content Header-->
-        <div class="app-content-header">
-          <!--begin::Container-->
-          <div class="container-fluid">
-            <!--begin::Row-->
-            <div class="row">
-              <div class="col-sm-6">
-                <h1 class="mb-0 fs-3">POS</h1>
-              </div>
-              <div class="col-sm-6">
-                <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb float-sm-end">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">POS</li>
-                  </ol>
-                </nav>
-              </div>
-            </div>
-            <!--end::Row-->
-          </div>
-          <!--end::Container-->
-        </div>
-        <!--end::App Content Header-->
+        <?php include '../layout/page-header.php'; ?>
+
         <!--begin::App Content-->
         <div class="app-content">
           <!--begin::Container-->
@@ -164,7 +143,7 @@
                     <figure class="card h-100 mb-0">
                       <div class="ratio ratio-4x3">
                         <img
-                          src="../assets/img/photo1.png"
+                          src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=900&q=80"
                           alt="Old town at dusk"
                           class="card-img-top object-fit-cover"
                           loading="lazy"
@@ -198,7 +177,7 @@
                     <figure class="card h-100 mb-0">
                       <div class="ratio ratio-4x3">
                         <img
-                          src="../assets/img/prod-1.jpg"
+                          src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80"
                           alt="Trail boot, three-quarter"
                           class="card-img-top object-fit-cover"
                           loading="lazy"
@@ -235,7 +214,7 @@
                     <figure class="card h-100 mb-0">
                       <div class="ratio ratio-4x3">
                         <img
-                          src="../assets/img/photo3.jpg"
+                          src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=900&q=80"
                           alt="Reading by lamplight"
                           class="card-img-top object-fit-cover"
                           loading="lazy"
@@ -276,7 +255,7 @@
                     <figure class="card h-100 mb-0">
                       <div class="ratio ratio-4x3">
                         <img
-                          src="../assets/img/prod-2.jpg"
+                          src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80"
                           alt="Trail boot, profile"
                           class="card-img-top object-fit-cover"
                           loading="lazy"
@@ -317,7 +296,7 @@
                     <figure class="card h-100 mb-0">
                       <div class="ratio ratio-4x3">
                         <img
-                          src="../assets/img/photo2.png"
+                          src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=80"
                           alt="Dining area, morning"
                           class="card-img-top object-fit-cover"
                           loading="lazy"
@@ -358,7 +337,7 @@
                     <figure class="card h-100 mb-0">
                       <div class="ratio ratio-4x3">
                         <img
-                          src="../assets/img/prod-3.jpg"
+                          src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80"
                           alt="Trail boot, outsole"
                           class="card-img-top object-fit-cover"
                           loading="lazy"
@@ -399,7 +378,7 @@
                     <figure class="card h-100 mb-0">
                       <div class="ratio ratio-4x3">
                         <img
-                          src="../assets/img/photo4.jpg"
+                          src="https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=900&q=80"
                           alt="Canal at first light"
                           class="card-img-top object-fit-cover"
                           loading="lazy"
@@ -440,7 +419,7 @@
                     <figure class="card h-100 mb-0">
                       <div class="ratio ratio-4x3">
                         <img
-                          src="../assets/img/prod-4.jpg"
+                          src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80"
                           alt="Trail boot, heel detail"
                           class="card-img-top object-fit-cover"
                           loading="lazy"
@@ -481,7 +460,7 @@
                     <figure class="card h-100 mb-0">
                       <div class="ratio ratio-4x3">
                         <img
-                          src="../assets/img/photo2.png"
+                          src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=80"
                           alt="Dining area, wide"
                           class="card-img-top object-fit-cover"
                           loading="lazy"
@@ -522,7 +501,7 @@
                     <figure class="card h-100 mb-0">
                       <div class="ratio ratio-4x3">
                         <img
-                          src="../assets/img/prod-5.jpg"
+                          src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80"
                           alt="Trail boot, upper"
                           class="card-img-top object-fit-cover"
                           loading="lazy"
@@ -563,7 +542,7 @@
                     <figure class="card h-100 mb-0">
                       <div class="ratio ratio-4x3">
                         <img
-                          src="../assets/img/photo1.png"
+                          src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=900&q=80"
                           alt="Narrow street"
                           class="card-img-top object-fit-cover"
                           loading="lazy"
@@ -604,7 +583,7 @@
                     <figure class="card h-100 mb-0">
                       <div class="ratio ratio-4x3">
                         <img
-                          src="../assets/img/photo4.jpg"
+                          src="https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=900&q=80"
                           alt="Canal, long exposure"
                           class="card-img-top object-fit-cover"
                           loading="lazy"
