@@ -676,6 +676,8 @@ $pageDefinitions = [
     'all-customers.php' => ['title'=>'All Customers','tableTitle'=>'Customer Directory','parent'=>'Customers','mode'=>'none','breadcrumbs'=>[['label'=>'Home','url'=>'dashboard.php'],['label'=>'Customers','url'=>null]]],
     'add-customer.php' => ['title'=>'Add Customer','parent'=>'Customers','mode'=>'none','breadcrumbs'=>[['label'=>'Home','url'=>'dashboard.php'],['label'=>'Customers','url'=>'all-customers.php'],['label'=>'Add Customer','url'=>null]]],
     'customer-ledger.php' => ['title'=>'Customer Ledger','parent'=>'Customers','mode'=>'none','breadcrumbs'=>[['label'=>'Home','url'=>'dashboard.php'],['label'=>'Customers','url'=>'all-customers.php'],['label'=>'Customer Ledger','url'=>null]]],
+    'inventory-adjustments.php' => ['title'=>'Inventory Adjustments','tableTitle'=>'Stock Movement History','parent'=>'Products','mode'=>'table','columns'=>['Date','Reference','Product','Movement','Quantity Change','Reason','Employee'],'breadcrumbs'=>[['label'=>'Home','url'=>'dashboard.php'],['label'=>'Products','url'=>'all-products.php'],['label'=>'Inventory Adjustments','url'=>null]]],
+    'add-stock-adjustment.php' => ['title'=>'Add Stock Adjustment','parent'=>'Products','mode'=>'form','fields'=>[['label'=>'Product','type'=>'text'],['label'=>'Adjustment Type','type'=>'text'],['label'=>'Quantity','type'=>'number'],['label'=>'Reason','type'=>'text'],['label'=>'Notes','type'=>'textarea']]],
     'tax.php' => [
         'title' => 'Tax',
         'tableTitle' => 'Tax List',
@@ -714,6 +716,7 @@ $pageConfig = $pageDefinitions[$currentPage] ?? [
 
 $pageActionsByPage = [
     'all-products.php' => [['label' => 'Add Product', 'url' => 'product-add.php'], ['label' => 'Generate Labels', 'url' => 'generate-tags.php']],
+    'inventory-adjustments.php' => [['label' => 'Add Adjustment', 'url' => 'add-stock-adjustment.php']],
     'all-purchases.php' => [['label' => 'Add Purchase', 'url' => 'add-purchase.php']],
     'all-branches.php' => [['label' => 'Add Branch', 'url' => 'add-branch.php']],
     'all-suppliers.php' => [['label' => 'Add Supplier', 'url' => 'add-supplier.php']],
