@@ -46,7 +46,7 @@ switch ($currentPage) {
         break;
     case 'all-suppliers.php':
         $tableDemoData = array_map(static function ($s) {
-            return ['supplier_name'=>$s['supplier_name'],'contact_person'=>$s['contact_person'],'phone'=>$s['phone'],'email'=>'sales@example.test','address'=>$s['city'].', Punjab','status'=>$s['status']];
+            return ['supplier_name'=>$s['supplier_name'],'contact_person'=>$s['contact_person'],'phone'=>$s['phone'],'email'=>$s['email'],'address'=>$s['address'],'status'=>$s['status']];
         }, $demoSuppliers);
         break;
     case 'all-sales.php':
@@ -64,7 +64,7 @@ switch ($currentPage) {
         break;
     case 'all-employees.php':
         $tableDemoData = array_map(static function ($e) {
-            return ['employee_name'=>$e['employee_name'],'role'=>$e['role'],'phone'=>'0300-55503'.str_pad((string)$e['id'],2,'0',STR_PAD_LEFT),'email'=>'staff'.$e['id'].'@example.test','branch'=>$e['branch'],'status'=>$e['status']];
+            return ['employee_name'=>$e['employee_name'],'role'=>$e['role'],'phone'=>$e['phone'],'email'=>$e['email'],'branch'=>$e['branch'],'status'=>$e['status']];
         }, $demoEmployees);
         break;
     case 'branch-ledger.php':
@@ -183,6 +183,79 @@ switch ($currentPage) {
           document.getElementById('product-barcode').addEventListener('input',function(){document.getElementById('internal-barcode').placeholder=this.value?'Manufacturer barcode supplied; internal barcode not required':'Preview internal Code 128';});
         });
         </script>
+      <?php elseif (in_array($currentPage, ['add-supplier.php','edit-supplier.php','add-employee.php','edit-employee.php','add-branch.php','edit-branch.php','add-expense.php','edit-expense.php'], true)): ?>
+        <?php
+          $editing = str_starts_with($currentPage, 'edit-');
+          $entity = str_contains($currentPage, 'supplier') ? 'supplier' : (str_contains($currentPage, 'employee') ? 'employee' : (str_contains($currentPage, 'branch') ? 'branch' : 'expense'));
+          $recordId = max(1, (int)($_GET['id'] ?? 1));
+          $record = [];
+          $entityRows = ['supplier'=>$demoSuppliers,'employee'=>$demoEmployees,'branch'=>$demoBranches,'expense'=>$demoExpenses];
+          foreach ($entityRows[$entity] as $row) if ((int)$row['id'] === $recordId) { $record = $row; break; }
+          if (!$record && $editing) $record = $entityRows[$entity][0] ?? [];
+          $entityFields = [
+            'supplier'=>[
+              ['name'=>'supplier_name','label'=>'Supplier / Company Name','type'=>'text','required'=>true],
+              ['name'=>'contact_person','label'=>'Contact Person','type'=>'text','required'=>true],
+              ['name'=>'phone','label'=>'Phone Number','type'=>'tel','required'=>true],
+              ['name'=>'email','label'=>'Email Address','type'=>'email'],
+              ['name'=>'address','label'=>'Street Address','type'=>'text'],
+              ['name'=>'city','label'=>'City','type'=>'select','options'=>['Okara','Lahore','Faisalabad','Multan','Other']],
+              ['name'=>'status','label'=>'Status','type'=>'select','options'=>['Active','Inactive']],
+            ],
+            'employee'=>[
+              ['name'=>'employee_name','label'=>'Full Name','type'=>'text','required'=>true],
+              ['name'=>'role','label'=>'Role','type'=>'select','options'=>['Store Manager','Cashier','Inventory Assistant','Sales Assistant','Branch Manager','Accountant']],
+              ['name'=>'phone','label'=>'Phone Number','type'=>'tel','required'=>true],
+              ['name'=>'email','label'=>'Email Address','type'=>'email'],
+              ['name'=>'branch','label'=>'Assigned Branch','type'=>'select','options'=>array_column($demoBranches,'branch_name')],
+              ['name'=>'status','label'=>'Employment Status','type'=>'select','options'=>['Active','Inactive']],
+            ],
+            'branch'=>[
+              ['name'=>'branch_name','label'=>'Branch Name','type'=>'text','required'=>true],
+              ['name'=>'branch_code','label'=>'Branch Code','type'=>'text','required'=>true],
+              ['name'=>'address','label'=>'Full Address','type'=>'text','required'=>true],
+              ['name'=>'phone','label'=>'Contact Number','type'=>'tel'],
+              ['name'=>'manager','label'=>'Branch Manager','type'=>'select','options'=>array_column($demoEmployees,'employee_name')],
+              ['name'=>'status','label'=>'Branch Status','type'=>'select','options'=>['Active','Inactive']],
+            ],
+            'expense'=>[
+              ['name'=>'title','label'=>'Expense Title','type'=>'text','required'=>true],
+              ['name'=>'type','label'=>'Expense Category','type'=>'select','options'=>array_column($demoExpenseTypes,'expense_type')],
+              ['name'=>'branch','label'=>'Branch','type'=>'select','options'=>array_column($demoBranches,'branch_name')],
+              ['name'=>'amount','label'=>'Amount (PKR)','type'=>'number','required'=>true],
+              ['name'=>'date','label'=>'Expense Date','type'=>'date'],
+              ['name'=>'payment_method','label'=>'Payment Method','type'=>'select','options'=>['Cash','Bank Transfer','Card']],
+              ['name'=>'description','label'=>'Description / Notes','type'=>'textarea'],
+            ],
+          ];
+          $entityTitle = ucfirst($entity);
+          $formTitle = ($editing ? 'Edit ' : 'Add ') . $entityTitle;
+        ?>
+        <div class="card">
+          <div class="card-header"><h3 class="card-title"><?= htmlspecialchars($formTitle, ENT_QUOTES, 'UTF-8') ?></h3><span class="badge text-bg-light">Demo form</span></div>
+          <form autocomplete="off" onsubmit="return false;">
+            <div class="card-body"><div class="row g-3">
+              <?php foreach ($entityFields[$entity] as $field): $value = $record[$field['name']] ?? ''; ?>
+                <div class="<?= $field['type'] === 'textarea' ? 'col-12' : 'col-md-6' ?>">
+                  <label class="form-label" for="<?= htmlspecialchars($field['name'], ENT_QUOTES, 'UTF-8') ?>"><?= htmlspecialchars($field['label'], ENT_QUOTES, 'UTF-8') ?><?= !empty($field['required']) ? ' *' : '' ?></label>
+                  <?php if ($field['type'] === 'select'): ?>
+                    <select class="form-select" id="<?= htmlspecialchars($field['name'], ENT_QUOTES, 'UTF-8') ?>" <?= !empty($field['required']) ? 'required' : '' ?>>
+                      <option value="">Select <?= htmlspecialchars(strtolower($field['label']), ENT_QUOTES, 'UTF-8') ?></option>
+                      <?php foreach ($field['options'] as $option): ?><option value="<?= htmlspecialchars($option, ENT_QUOTES, 'UTF-8') ?>" <?= (string)$value === (string)$option ? 'selected' : '' ?>><?= htmlspecialchars($option, ENT_QUOTES, 'UTF-8') ?></option><?php endforeach; ?>
+                    </select>
+                  <?php elseif ($field['type'] === 'textarea'): ?>
+                    <textarea class="form-control" id="<?= htmlspecialchars($field['name'], ENT_QUOTES, 'UTF-8') ?>" rows="3"><?= htmlspecialchars((string)$value, ENT_QUOTES, 'UTF-8') ?></textarea>
+                  <?php else: ?>
+                    <input class="form-control" id="<?= htmlspecialchars($field['name'], ENT_QUOTES, 'UTF-8') ?>" type="<?= htmlspecialchars($field['type'], ENT_QUOTES, 'UTF-8') ?>" value="<?= htmlspecialchars((string)$value, ENT_QUOTES, 'UTF-8') ?>" <?= !empty($field['required']) ? 'required' : '' ?> <?= $field['type'] === 'number' ? 'min="0" step="0.01"' : '' ?>>
+                  <?php endif; ?>
+                </div>
+              <?php endforeach; ?>
+            </div>
+            <div class="alert alert-info mt-3 mb-0">Prototype only: form values are prefilled for editing, but saving and validation against stored records will be implemented with the backend.</div>
+            </div>
+            <div class="card-footer d-flex gap-2"><button type="button" class="btn btn-primary" disabled><?= $editing ? 'Update' : 'Save' ?> <?= htmlspecialchars($entityTitle, ENT_QUOTES, 'UTF-8') ?> (backend pending)</button><a href="<?= $entity === 'supplier' ? 'all-suppliers.php' : ($entity === 'employee' ? 'all-employees.php' : ($entity === 'branch' ? 'all-branches.php' : 'all-expenses.php')) ?>" class="btn btn-outline-secondary">Cancel</a></div>
+          </form>
+        </div>
       <?php elseif ($pageMode === 'form'): ?>
         <div class="card">
           <div class="card-header"><h3 class="card-title"><?= htmlspecialchars($pageTitle, ENT_QUOTES, 'UTF-8') ?></h3></div>
