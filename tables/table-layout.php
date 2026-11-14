@@ -36,27 +36,27 @@ switch ($currentPage) {
         break;
     case 'all-products.php':
         $tableDemoData = array_map(static function ($p) use ($money) {
-            return ['product'=>$p['product'],'sku'=>$p['sku'],'category'=>$p['category'],'price'=>$money($p['price']),'stock'=>$p['stock'],'status'=>$p['status']];
+            return ['product'=>$p['product'],'sku'=>$p['sku'],'barcode'=>$p['barcode'],'category'=>$p['category'],'price'=>$money($p['price']),'purchase_price'=>$money($p['purchase_price']),'price_type'=>$p['price_type'],'price_group'=>$p['price_group'],'stock_quantity'=>$p['stock'],'status'=>$p['status']];
         }, $demoProducts);
         break;
     case 'all-branches.php':
         $tableDemoData = array_map(static function ($b) {
-            return ['branch_name'=>$b['branch_name'],'branch_code'=>$b['branch_code'],'address'=>$b['address'],'phone'=>$b['phone'],'status'=>$b['status']];
+            return ['branch_name'=>$b['branch_name'],'branch_code'=>$b['branch_code'],'address'=>$b['address'],'phone'=>$b['phone'],'manager'=>$b['manager'],'status'=>$b['status']];
         }, $demoBranches);
         break;
     case 'all-suppliers.php':
         $tableDemoData = array_map(static function ($s) {
-            return ['supplier_name'=>$s['supplier_name'],'contact_person'=>$s['contact_person'],'phone'=>$s['phone'],'email'=>$s['email'],'address'=>$s['address'],'status'=>$s['status']];
+            return ['supplier_name'=>$s['supplier_name'],'contact_person'=>$s['contact_person'],'phone'=>$s['phone'],'email'=>$s['email'],'address'=>$s['address'],'city'=>$s['city'],'status'=>$s['status']];
         }, $demoSuppliers);
         break;
     case 'all-sales.php':
         $tableDemoData = array_map(static function ($s) use ($money) {
-            return ['invoice'=>$s['invoice'],'date'=>$s['date'],'customer'=>$s['customer'],'branch'=>'Main Branch','total'=>$money($s['total']),'payment_status'=>$s['status']];
+            return ['invoice'=>$s['invoice'],'date'=>$s['date'],'customer'=>$s['customer'],'branch'=>'Main Branch','total'=>$money($s['total']),'paid_amount'=>$money($s['paid_amount']),'due_amount'=>$money($s['due_amount']),'payment_method'=>$s['payment_method'],'payment_status'=>$s['status']];
         }, $demoSales);
         break;
     case 'all-expenses.php':
         $tableDemoData = array_map(static function ($e) use ($money) {
-            return ['expense'=>$e['id'],'date'=>$e['date'],'expense_type'=>$e['type'],'branch'=>$e['branch'],'amount'=>$money($e['amount']),'status'=>'Paid'];
+            return ['expense'=>$e['id'],'expense_title'=>$e['title'],'date'=>$e['date'],'expense_type'=>$e['type'],'branch'=>$e['branch'],'amount'=>$money($e['amount']),'payment_method'=>$e['payment_method'],'status'=>'Paid'];
         }, $demoExpenses);
         break;
     case 'expense-types.php':
