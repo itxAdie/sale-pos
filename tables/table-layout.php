@@ -99,8 +99,19 @@ switch ($currentPage) {
         ];
         break;
 }
+$entityEditRoutes = [
+    'all-suppliers.php' => 'edit-supplier.php',
+    'all-employees.php' => 'edit-employee.php',
+    'all-branches.php' => 'edit-branch.php',
+    'all-expenses.php' => 'edit-expense.php',
+];
+if (isset($entityEditRoutes[$currentPage])) {
+    foreach ($tableDemoData as $index => $record) {
+        $tableDemoData[$index]['actions'] = $entityEditRoutes[$currentPage] . '?id=' . (int)($index + 1);
+    }
+    $tableColumnDefinitions[] = ['title'=>'Actions','field'=>'actions','headerSort'=>false,'formatter'=>'editLink'];
+}
 ?>
-<main class="app-main">
   <?php include '../layout/page-header.php'; ?>
   <div class="app-content">
     <div class="container-fluid">
@@ -290,7 +301,12 @@ switch ($currentPage) {
         <div class="card">
           <div class="card-header">
             <h3 class="card-title"><?= htmlspecialchars($tableTitle, ENT_QUOTES, 'UTF-8') ?></h3>
-            <div class="card-tools">
+            <div class="card-tools d-flex align-items-center gap-2">
+              <?php
+                $addRoutes = ['all-suppliers.php'=>'add-supplier.php','all-employees.php'=>'add-employee.php','all-branches.php'=>'add-branch.php','all-expenses.php'=>'add-expense.php'];
+                if (isset($addRoutes[$currentPage])): ?>
+                  <a class="btn btn-sm btn-primary" href="<?= htmlspecialchars($addRoutes[$currentPage], ENT_QUOTES, 'UTF-8') ?>"><i class="bi bi-plus-lg me-1"></i>Add New</a>
+              <?php endif; ?>
               <div class="input-group input-group-sm" style="width: 16rem">
                 <span class="input-group-text"><i class="bi bi-search" aria-hidden="true"></i></span>
                 <input id="table-filter" type="search" class="form-control" placeholder="Filter rows…" aria-label="Filter rows">
@@ -333,7 +349,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const records = <?= json_encode($tableDemoData, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>;
   const table = new Tabulator(tableElement, {
     data: records,
-    columns: columns,
+    columns: columns.map(column => column.field === 'actions' ? {...column, formatter: function(cell) { const url=String(cell.getValue() || '#'); return '<a class="btn btn-sm btn-outline-primary" href="' + url.replace(/&/g, '&amp;').replace(/"/g, '&quot;') + '">Edit</a>'; }} : column),
     layout: 'fitColumns',
     placeholder: 'No demo records are configured for this page yet.',
     pagination: true,
