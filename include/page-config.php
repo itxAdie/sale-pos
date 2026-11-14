@@ -147,11 +147,7 @@ $pageDefinitions = [
         'parent' => 'Branches',
         'mode' => 'table',
         'columns' => [
-            'Branch Name',
-            'Branch Code',
-            'Address',
-            'Phone',
-            'Status'
+            'Branch Name', 'Branch Code', 'Address', 'Phone', 'Manager', 'Status'
         ],
         'breadcrumbs' => [
             [
@@ -211,12 +207,7 @@ $pageDefinitions = [
         'parent' => 'Suppliers',
         'mode' => 'table',
         'columns' => [
-            'Supplier Name',
-            'Contact Person',
-            'Phone',
-            'Email',
-            'Address',
-            'Status'
+            'Supplier Name', 'Contact Person', 'Phone', 'Email', 'Address', 'City', 'Status'
         ],
         'breadcrumbs' => [
             [
@@ -280,12 +271,7 @@ $pageDefinitions = [
         'parent' => 'Sales',
         'mode' => 'table',
         'columns' => [
-            'Invoice #',
-            'Date',
-            'Customer',
-            'Branch',
-            'Total',
-            'Payment Status'
+            'Invoice #', 'Date', 'Customer', 'Branch', 'Total', 'Paid Amount', 'Due Amount', 'Payment Method', 'Payment Status'
         ],
         'breadcrumbs' => [
             [
@@ -349,12 +335,7 @@ $pageDefinitions = [
         'parent' => 'Expenses',
         'mode' => 'table',
         'columns' => [
-            'Expense #',
-            'Date',
-            'Expense Type',
-            'Branch',
-            'Amount',
-            'Status'
+            'Expense #', 'Expense Title', 'Date', 'Expense Type', 'Branch', 'Amount', 'Payment Method', 'Status'
         ],
         'breadcrumbs' => [
             [
