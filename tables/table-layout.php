@@ -56,7 +56,7 @@ switch ($currentPage) {
         break;
     case 'all-expenses.php':
         $tableDemoData = array_map(static function ($e) use ($money) {
-            return ['expense'=>$e['reference'],'date'=>$e['date'],'expense_title'=>$e['title'],'expense_type'=>$e['type'],'branch'=>$e['branch'],'amount'=>$money($e['amount']),'payment_method'=>$e['payment_method'],'payment_reference'=>'—','description'=>$e['description'],'status'=>$e['status']];
+            return ['expense'=>$e['reference'],'date'=>$e['date'],'expense_title'=>$e['title'],'expense_type'=>$e['type'],'branch'=>$e['branch'],'amount'=>$money($e['amount']),'payment_method'=>$e['payment_method'],'payment_reference'=>$e['reference'],'description'=>$e['description'],'status'=>$e['status']];
         }, $demoExpenses);
         break;
     case 'expense-types.php':
