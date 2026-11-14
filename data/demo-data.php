@@ -130,7 +130,7 @@ $demoCashBalance = array_sum(array_map(static function ($sale) {
     return in_array($sale['payment_method'], ['Cash', 'Split'], true) ? $sale['total'] : 0;
 }, $demoSales));
 $demoGrossProfit = (int) round($demoSalesTotal * 0.28);
-$demoNetProfit = $demoGrossProfit - $demoExpenseTotal;
+
 
 $demoProductCount = count($demoProducts);
 $demoStockUnits = array_sum(array_column($demoProducts, 'stock'));
@@ -144,4 +144,79 @@ $demoOutOfStockCount = count(array_filter($demoProducts, static function ($produ
     return (int) $product['stock'] === 0;
 }));
 $demoExpenseTotal = array_sum(array_column($demoExpenses, 'amount'));
+$demoNetProfit = $demoGrossProfit - $demoExpenseTotal;
 $demoCustomerDue = array_sum(array_column($demoCustomers, 'balance'));
+
+
+// Additional coherent records used by the shared list pages.
+$demoPurchases = [];
+for ($purchaseIndex = 1; $purchaseIndex <= 15; $purchaseIndex++) {
+    $demoPurchases[] = [
+        'id' => $purchaseIndex,
+        'reference' => sprintf('PUR-26-%04d', $purchaseIndex),
+        'date' => date('Y-m-d', strtotime('2026-11-01 +' . (($purchaseIndex - 1) % 14) . ' days')),
+        'supplier' => $demoSuppliers[($purchaseIndex - 1) % count($demoSuppliers)]['supplier_name'],
+        'branch' => 'Main Branch',
+        'total' => 8500 + (($purchaseIndex * 1723) % 14500),
+        'paid' => 5000 + (($purchaseIndex * 613) % 9000),
+        'status' => $purchaseIndex % 4 === 0 ? 'Partially Paid' : 'Paid',
+    ];
+}
+$demoExpenseTypes = [
+    ['expense_type' => 'Rent', 'description' => 'Monthly shop rent and premises charges', 'status' => 'Active'],
+    ['expense_type' => 'Utilities', 'description' => 'Electricity, internet and phone bills', 'status' => 'Active'],
+    ['expense_type' => 'Salaries', 'description' => 'Staff wages and payroll', 'status' => 'Active'],
+    ['expense_type' => 'General', 'description' => 'Routine shop and office supplies', 'status' => 'Active'],
+    ['expense_type' => 'Transport', 'description' => 'Delivery and goods transportation', 'status' => 'Active'],
+];
+$demoSupplierLedger = [];
+$runningSupplierBalance = 0;
+foreach ($demoPurchases as $purchase) {
+    $runningSupplierBalance += max(0, (int) $purchase['total'] - (int) $purchase['paid']);
+    $demoSupplierLedger[] = [
+        'date' => $purchase['date'], 'supplier' => $purchase['supplier'],
+        'description' => 'Purchase ' . $purchase['reference'],
+        'debit' => number_format($purchase['paid'], 2, '.', ''),
+        'credit' => number_format($purchase['total'], 2, '.', ''),
+        'balance' => number_format($runningSupplierBalance, 2, '.', ''),
+    ];
+}
+$demoBranchLedger = [];
+$runningBranchBalance = 0;
+foreach ($demoSales as $sale) {
+    $runningBranchBalance += (int) $sale['total'];
+    $demoBranchLedger[] = [
+        'date' => $sale['date'], 'branch' => 'Main Branch',
+        'description' => 'Sale ' . $sale['invoice'],
+        'debit' => '0.00', 'credit' => number_format($sale['total'], 2, '.', ''),
+        'balance' => number_format($runningBranchBalance, 2, '.', ''),
+    ];
+}
+$demoSalesReport = [];
+foreach ($demoSales as $sale) {
+    $reportDate = $sale['date'];
+    if (!isset($demoSalesReport[$reportDate])) {
+        $demoSalesReport[$reportDate] = ['date' => $reportDate, 'branch' => 'Main Branch', 'invoices' => 0, 'gross_sales' => 0, 'discount' => 0, 'net_sales' => 0];
+    }
+    $demoSalesReport[$reportDate]['invoices']++;
+    $demoSalesReport[$reportDate]['gross_sales'] += (int) $sale['total'] + (($sale['id'] % 5) * 10);
+    $demoSalesReport[$reportDate]['discount'] += ($sale['id'] % 5) * 10;
+    $demoSalesReport[$reportDate]['net_sales'] += (int) $sale['total'];
+}
+$demoSalesReport = array_values($demoSalesReport);
+$demoExpenseReport = [];
+foreach ($demoExpenses as $expense) {
+    $demoExpenseReport[] = [
+        'date' => '2026-11-' . str_pad((string) (10 + $expense['id']), 2, '0', STR_PAD_LEFT),
+        'branch' => 'Main Branch', 'expense_type' => $expense['type'],
+        'amount' => number_format($expense['amount'], 2, '.', ''),
+        'notes' => $expense['title'],
+    ];
+}
+$demoProfitLoss = [[
+    'period' => 'November 2026 (Demo)',
+    'revenue' => number_format($demoSalesTotal, 2, '.', ''),
+    'cost_of_goods' => number_format($demoSalesTotal - $demoGrossProfit, 2, '.', ''),
+    'expenses' => number_format($demoExpenseTotal, 2, '.', ''),
+    'net_profit_loss' => number_format($demoNetProfit, 2, '.', ''),
+]];
