@@ -68,13 +68,13 @@ foreach ($demoProductNames as $category => $names) {
 
 $demoSuppliers = [
     ['id' => 1, 'supplier_name' => 'Al-Madina Wholesale Traders', 'contact_person' => 'Usman Ali', 'phone' => '0301-5550101', 'email' => 'sales@almadina.example.test', 'address' => 'Grain Market, Okara', 'city' => 'Okara', 'opening_balance' => 0, 'payment_terms' => 'Cash / 7 days', 'status' => 'Active'],
-    ['id' => 2, 'supplier_name' => 'Hassan General Suppliers', 'contact_person' => 'Hassan Raza', 'phone' => '0302-5550102', 'email' => 'orders@hassangeneral.example.test', 'address' => 'Depalpur Road, Okara', 'city' => 'Okara', 'status' => 'Active'],
+    ['id' => 2, 'supplier_name' => 'Hassan General Suppliers', 'contact_person' => 'Hassan Raza', 'phone' => '0302-5550102', 'email' => 'orders@hassangeneral.example.test', 'address' => 'Depalpur Road, Okara', 'city' => 'Okara', 'opening_balance' => 0, 'payment_terms' => 'Cash', 'status' => 'Active'],
     ['id' => 3, 'supplier_name' => 'Punjab Plastic House', 'contact_person' => 'Imran Shah', 'phone' => '0303-5550103', 'email' => 'info@punjabplastic.example.test', 'address' => 'Shah Alam Market, Lahore', 'city' => 'Lahore', 'opening_balance' => 2500, 'payment_terms' => '15 days', 'status' => 'Active'],
-    ['id' => 4, 'supplier_name' => 'City Stationers & Toys', 'contact_person' => 'Bilal Ahmed', 'phone' => '0304-5550104', 'email' => 'sales@citystationers.example.test', 'address' => 'College Road, Okara', 'city' => 'Okara', 'status' => 'Active'],
-    ['id' => 5, 'supplier_name' => 'Bright Home Distributors', 'contact_person' => 'Farhan Iqbal', 'phone' => '0305-5550105', 'email' => 'orders@brighthome.example.test', 'address' => 'Brandreth Road, Lahore', 'city' => 'Lahore', 'status' => 'Active'],
+    ['id' => 4, 'supplier_name' => 'City Stationers & Toys', 'contact_person' => 'Bilal Ahmed', 'phone' => '0304-5550104', 'email' => 'sales@citystationers.example.test', 'address' => 'College Road, Okara', 'city' => 'Okara', 'opening_balance' => 0, 'payment_terms' => 'Cash', 'status' => 'Active'],
+    ['id' => 5, 'supplier_name' => 'Bright Home Distributors', 'contact_person' => 'Farhan Iqbal', 'phone' => '0305-5550105', 'email' => 'orders@brighthome.example.test', 'address' => 'Brandreth Road, Lahore', 'city' => 'Lahore', 'opening_balance' => 0, 'payment_terms' => 'Cash', 'status' => 'Active'],
     ['id' => 6, 'supplier_name' => 'Care & Beauty Wholesale', 'contact_person' => 'Ahsan Malik', 'phone' => '0306-5550106', 'email' => 'care@beautywholesale.example.test', 'address' => 'Rail Bazaar, Faisalabad', 'city' => 'Faisalabad', 'opening_balance' => 0, 'payment_terms' => '7 days', 'status' => 'Active'],
-    ['id' => 7, 'supplier_name' => 'Smart Accessories Supply', 'contact_person' => 'Waqas Tariq', 'phone' => '0307-5550107', 'email' => 'sales@smartsupply.example.test', 'address' => 'Hall Road, Lahore', 'city' => 'Lahore', 'status' => 'Active'],
-    ['id' => 8, 'supplier_name' => 'Rana Trading Company', 'contact_person' => 'Rana Shahid', 'phone' => '0308-5550108', 'email' => 'rana@trading.example.test', 'address' => 'M.A. Jinnah Road, Okara', 'city' => 'Okara', 'status' => 'Active'],
+    ['id' => 7, 'supplier_name' => 'Smart Accessories Supply', 'contact_person' => 'Waqas Tariq', 'phone' => '0307-5550107', 'email' => 'sales@smartsupply.example.test', 'address' => 'Hall Road, Lahore', 'city' => 'Lahore', 'opening_balance' => 0, 'payment_terms' => 'Cash', 'status' => 'Active'],
+    ['id' => 8, 'supplier_name' => 'Rana Trading Company', 'contact_person' => 'Rana Shahid', 'phone' => '0308-5550108', 'email' => 'rana@trading.example.test', 'address' => 'M.A. Jinnah Road, Okara', 'city' => 'Okara', 'opening_balance' => 0, 'payment_terms' => 'Cash', 'status' => 'Active'],
 ];
 
 $demoCustomers = [
@@ -359,7 +359,7 @@ foreach ($demoPurchases as $purchase) {
             'supplier'=>$purchase['supplier'],
             'purchase_reference'=>$purchase['reference'],
             'amount'=>$purchase['paid'],
-            'method'=>['Cash','Bank Transfer','Cheque'][$purchase['id'] % 3],
+            'method'=>$purchase['payment_method'],
             'status'=>'Recorded (demo)',
         ];
     }
