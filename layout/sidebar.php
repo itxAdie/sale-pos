@@ -136,6 +136,11 @@
                     </a>
                   </li>
                   <li class="nav-item">
+                    <a href="./supplier-payments.php" class="nav-link<?= in_array($currentPage, ['supplier-payments.php','add-supplier-payment.php'], true) ? ' active' : '' ?>">
+                      <i class="nav-icon bi bi-wallet2"></i><p>Supplier Payments</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
                     <a href="./add-supplier.php" class="nav-link<?= $currentPage === 'add-supplier.php' ? ' active' : '' ?>">
                       <i class="nav-icon bi bi-person-add"></i>
                       <p>Add Supplier</p>
