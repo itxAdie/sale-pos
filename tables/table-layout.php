@@ -88,7 +88,7 @@ foreach ($pageColumns as $index => $column) {
                 Print
               </button>
             </div>
-            <div id="users-table" aria-label="<?= htmlspecialchars($tableTitle, ENT_QUOTES, 'UTF-8') ?>"></div>
+            <div id="users-table" aria-label="Users"></div>
             <div
               id="table-pagination"
               class="d-flex flex-wrap gap-2 justify-content-end mt-2"
