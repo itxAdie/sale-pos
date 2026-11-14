@@ -105,7 +105,7 @@
             <li class="nav-item dropdown user-menu">
               <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                 <img
-                  src="./assets/img/user2-160x160.jpg"
+                  src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=160&h=160&q=80"
                   class="user-image rounded-circle shadow"
                   alt="Nomi Shopping Mall"
                 />
@@ -115,7 +115,7 @@
                 <!--begin::User Image-->
                 <li class="user-header text-bg-primary">
                   <img
-                    src="./assets/img/user2-160x160.jpg"
+                    src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=160&h=160&q=80"
                     class="rounded-circle shadow"
                     alt="Nomi Shopping Mall"
                   />
