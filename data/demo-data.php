@@ -157,9 +157,9 @@ for ($purchaseIndex = 1; $purchaseIndex <= 15; $purchaseIndex++) {
         'date' => date('Y-m-d', strtotime('2026-11-01 +' . (($purchaseIndex - 1) % 14) . ' days')),
         'supplier' => $demoSuppliers[($purchaseIndex - 1) % count($demoSuppliers)]['supplier_name'],
         'branch' => 'Main Branch',
-        'total' => 8500 + (($purchaseIndex * 1723) % 14500),
-        'paid' => 5000 + (($purchaseIndex * 613) % 9000),
-        'status' => $purchaseIndex % 4 === 0 ? 'Partially Paid' : 'Paid',
+        'total' => $purchaseTotal = 8500 + (($purchaseIndex * 1723) % 14500),
+        'paid' => min($purchaseTotal, 5000 + (($purchaseIndex * 613) % 9000)),
+        'status' => min($purchaseTotal, 5000 + (($purchaseIndex * 613) % 9000)) >= $purchaseTotal ? 'Paid' : 'Partially Paid',
     ];
 }
 $demoExpenseTypes = [
@@ -170,15 +170,17 @@ $demoExpenseTypes = [
     ['expense_type' => 'Transport', 'description' => 'Delivery and goods transportation', 'status' => 'Active'],
 ];
 $demoSupplierLedger = [];
-$runningSupplierBalance = 0;
+$runningSupplierBalances = [];
 foreach ($demoPurchases as $purchase) {
-    $runningSupplierBalance += max(0, (int) $purchase['total'] - (int) $purchase['paid']);
+    $supplierName = $purchase['supplier'];
+    if (!isset($runningSupplierBalances[$supplierName])) $runningSupplierBalances[$supplierName] = 0;
+    $runningSupplierBalances[$supplierName] += (int) $purchase['total'] - (int) $purchase['paid'];
     $demoSupplierLedger[] = [
-        'date' => $purchase['date'], 'supplier' => $purchase['supplier'],
-        'description' => 'Purchase ' . $purchase['reference'],
+        'date' => $purchase['date'], 'supplier' => $supplierName,
+        'description' => 'Purchase ' . $purchase['reference'] . ' (payment applied)',
         'debit' => number_format($purchase['paid'], 2, '.', ''),
         'credit' => number_format($purchase['total'], 2, '.', ''),
-        'balance' => number_format($runningSupplierBalance, 2, '.', ''),
+        'balance' => number_format($runningSupplierBalances[$supplierName], 2, '.', ''),
     ];
 }
 $demoBranchLedger = [];
