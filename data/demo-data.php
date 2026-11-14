@@ -127,7 +127,9 @@ for ($purchaseIndex = 1; $purchaseIndex <= 15; $purchaseIndex++) {
     $demoPurchasesTotal += 8500 + (($purchaseIndex * 1723) % 14500);
 }
 $demoCashBalance = array_sum(array_map(static function ($sale) {
-    return in_array($sale['payment_method'], ['Cash', 'Split'], true) ? $sale['total'] : 0;
+    if ($sale['payment_method'] === 'Cash') return (float) $sale['total'];
+    if ($sale['payment_method'] === 'Split') return (float) $sale['total'] * 0.5;
+    return 0;
 }, $demoSales));
 $demoGrossProfit = (int) round($demoSalesTotal * 0.28);
 
