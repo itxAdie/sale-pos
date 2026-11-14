@@ -106,6 +106,32 @@ $demoExpenses = [
     ['id' => 6, 'title' => 'Delivery & Transport', 'type' => 'Transport', 'amount' => 6800],
 ];
 
+
+$demoSales = [];
+for ($saleIndex = 1; $saleIndex <= 40; $saleIndex++) {
+    $saleDate = date('Y-m-d', strtotime('2026-11-01 +' . (($saleIndex - 1) % 14) . ' days'));
+    $saleTotal = 850 + (($saleIndex * 437) % 6200);
+    $demoSales[] = [
+        'id' => $saleIndex,
+        'invoice' => sprintf('INV-26-%05d', $saleIndex),
+        'date' => $saleDate,
+        'customer' => $demoCustomers[$saleIndex % count($demoCustomers)]['customer_name'],
+        'total' => $saleTotal,
+        'payment_method' => ['Cash', 'Bank', 'Split', 'Credit'][$saleIndex % 4],
+        'status' => $saleIndex % 7 === 0 ? 'Partially Paid' : 'Paid',
+    ];
+}
+$demoSalesTotal = array_sum(array_column($demoSales, 'total'));
+$demoPurchasesTotal = 0;
+for ($purchaseIndex = 1; $purchaseIndex <= 15; $purchaseIndex++) {
+    $demoPurchasesTotal += 8500 + (($purchaseIndex * 1723) % 14500);
+}
+$demoCashBalance = array_sum(array_map(static function ($sale) {
+    return in_array($sale['payment_method'], ['Cash', 'Split'], true) ? $sale['total'] : 0;
+}, $demoSales));
+$demoGrossProfit = (int) round($demoSalesTotal * 0.28);
+$demoNetProfit = $demoGrossProfit - $demoExpenseTotal;
+
 $demoProductCount = count($demoProducts);
 $demoStockUnits = array_sum(array_column($demoProducts, 'stock'));
 $demoStockValue = array_sum(array_map(static function ($product) {
