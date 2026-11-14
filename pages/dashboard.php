@@ -146,6 +146,17 @@
               <!--end::Col-->
             </div>
             <!--end::Row-->
+            <div class="row g-3 mb-3">
+              <div class="col-12 col-md-4">
+                <div class="info-box"><span class="info-box-icon text-bg-primary"><i class="bi bi-boxes"></i></span><div class="info-box-content"><span class="info-box-text">Inventory at Cost</span><span class="info-box-number">Rs. <?= number_format($demoStockValue) ?></span></div></div>
+              </div>
+              <div class="col-12 col-md-4">
+                <div class="info-box"><span class="info-box-icon text-bg-warning"><i class="bi bi-exclamation-triangle"></i></span><div class="info-box-content"><span class="info-box-text">Low-stock Products</span><span class="info-box-number"><?= number_format($demoLowStockCount) ?></span></div></div>
+              </div>
+              <div class="col-12 col-md-4">
+                <div class="info-box"><span class="info-box-icon text-bg-success"><i class="bi bi-graph-up-arrow"></i></span><div class="info-box-content"><span class="info-box-text">Estimated Net Profit</span><span class="info-box-number">Rs. <?= number_format($demoNetProfit) ?></span><small class="text-body-secondary">Demo estimate using a sample gross margin</small></div></div>
+              </div>
+            </div>
             <!--begin::Row-->
             <div class="row">
               <!-- Start col -->
