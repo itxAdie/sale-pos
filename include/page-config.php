@@ -316,40 +316,29 @@ $pageDefinitions = [
         'parent' => 'Sales',
         'mode' => 'form',
         'fields' => [
-            [
-                'label' => 'Customer',
-                'type' => 'text'
-            ],
-            [
-                'label' => 'Branch',
-                'type' => 'text'
-            ],
-            [
-                'label' => 'Product / Barcode',
-                'type' => 'text'
-            ],
-            [
-                'label' => 'Quantity',
-                'type' => 'number'
-            ],
-            [
-                'label' => 'Payment Method',
-                'type' => 'text'
-            ]
+            ['label' => 'Invoice Number', 'type' => 'text'],
+            ['label' => 'Sale Date', 'type' => 'date'],
+            ['label' => 'Customer', 'type' => 'text'],
+            ['label' => 'Branch', 'type' => 'text'],
+            ['label' => 'Cashier', 'type' => 'text'],
+            ['label' => 'Product / Barcode / SKU', 'type' => 'text'],
+            ['label' => 'Quantity', 'type' => 'number'],
+            ['label' => 'Unit Selling Price (PKR)', 'type' => 'number'],
+            ['label' => 'Line Discount (PKR)', 'type' => 'number'],
+            ['label' => 'Subtotal (PKR)', 'type' => 'number'],
+            ['label' => 'Invoice Discount (PKR)', 'type' => 'number'],
+            ['label' => 'Tax (PKR)', 'type' => 'number'],
+            ['label' => 'Grand Total (PKR)', 'type' => 'number'],
+            ['label' => 'Payment Method', 'type' => 'text'],
+            ['label' => 'Amount Paid (PKR)', 'type' => 'number'],
+            ['label' => 'Amount Due (PKR)', 'type' => 'number'],
+            ['label' => 'Payment Reference', 'type' => 'text'],
+            ['label' => 'Notes', 'type' => 'text']
         ],
         'breadcrumbs' => [
-            [
-                'label' => 'Home',
-                'url' => 'dashboard.php'
-            ],
-            [
-                'label' => 'Sales',
-                'url' => null
-            ],
-            [
-                'label' => 'Add Sale',
-                'url' => null
-            ]
+            ['label' => 'Home', 'url' => 'dashboard.php'],
+            ['label' => 'Sales', 'url' => null],
+            ['label' => 'Add Sale', 'url' => null]
         ]
     ],
     'all-expenses.php' => [
