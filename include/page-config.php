@@ -671,6 +671,11 @@ $pageDefinitions = [
             ]
         ]
     ],
+    'all-purchases.php' => ['title'=>'All Purchases','tableTitle'=>'Purchase Register','parent'=>'Purchases','mode'=>'table','columns'=>['Reference','Date','Supplier','Branch','Total','Paid','Status'],'breadcrumbs'=>[['label'=>'Home','url'=>'dashboard.php'],['label'=>'Purchases','url'=>null],['label'=>'All Purchases','url'=>null]]],
+    'add-purchase.php' => ['title'=>'Add Purchase','parent'=>'Purchases','mode'=>'none','breadcrumbs'=>[['label'=>'Home','url'=>'dashboard.php'],['label'=>'Purchases','url'=>'all-purchases.php'],['label'=>'Add Purchase','url'=>null]]],
+    'all-customers.php' => ['title'=>'All Customers','tableTitle'=>'Customer Directory','parent'=>'Customers','mode'=>'none','breadcrumbs'=>[['label'=>'Home','url'=>'dashboard.php'],['label'=>'Customers','url'=>null]]],
+    'add-customer.php' => ['title'=>'Add Customer','parent'=>'Customers','mode'=>'none','breadcrumbs'=>[['label'=>'Home','url'=>'dashboard.php'],['label'=>'Customers','url'=>'all-customers.php'],['label'=>'Add Customer','url'=>null]]],
+    'customer-ledger.php' => ['title'=>'Customer Ledger','parent'=>'Customers','mode'=>'none','breadcrumbs'=>[['label'=>'Home','url'=>'dashboard.php'],['label'=>'Customers','url'=>'all-customers.php'],['label'=>'Customer Ledger','url'=>null]]],
     'tax.php' => [
         'title' => 'Tax',
         'tableTitle' => 'Tax List',
@@ -708,7 +713,8 @@ $pageConfig = $pageDefinitions[$currentPage] ?? [
 ];
 
 $pageActionsByPage = [
-    'all-products.php' => [['label' => 'Add Product', 'url' => 'product-add.php']],
+    'all-products.php' => [['label' => 'Add Product', 'url' => 'product-add.php'], ['label' => 'Generate Labels', 'url' => 'generate-tags.php']],
+    'all-purchases.php' => [['label' => 'Add Purchase', 'url' => 'add-purchase.php']],
     'all-branches.php' => [['label' => 'Add Branch', 'url' => 'add-branch.php']],
     'all-suppliers.php' => [['label' => 'Add Supplier', 'url' => 'add-supplier.php']],
     'all-sales.php' => [['label' => 'Add Sale', 'url' => 'add-sale.php']],
