@@ -111,16 +111,41 @@ $demoSales = [];
 for ($saleIndex = 1; $saleIndex <= 40; $saleIndex++) {
     $saleDate = date('Y-m-d', strtotime('2026-11-01 +' . (($saleIndex - 1) % 14) . ' days'));
     $saleTotal = 850 + (($saleIndex * 437) % 6200);
+    $paymentMethod = ['Cash', 'Bank', 'Split', 'Credit'][$saleIndex % 4];
+    $paidAmount = ['Cash'=>$saleTotal,'Bank'=>$saleTotal,'Split'=>(int)round($saleTotal * 0.5),'Credit'=>0][$paymentMethod];
+    $customerName = $demoCustomers[$saleIndex % count($demoCustomers)]['customer_name'];
+    $cashier = $demoEmployees[$saleIndex % count($demoEmployees)]['employee_name'];
+    $product = $demoProducts[($saleIndex * 3) % count($demoProducts)];
+    $quantity = max(1, (int) floor($saleTotal / max(1, (int)$product['price'])));
+    $unitPrice = (int) round($saleTotal / $quantity);
     $demoSales[] = [
         'id' => $saleIndex,
         'invoice' => sprintf('INV-26-%05d', $saleIndex),
         'date' => $saleDate,
-        'customer' => $demoCustomers[$saleIndex % count($demoCustomers)]['customer_name'],
+        'customer' => $customerName,
+        'branch' => 'Main Branch',
+        'cashier' => $cashier,
+        'item_count' => 1,
+        'items' => [[
+            'product_id' => $product['id'],
+            'product' => $product['product'],
+            'sku' => $product['sku'],
+            'barcode' => $product['barcode'],
+            'quantity' => $quantity,
+            'unit_price' => $unitPrice,
+            'line_discount' => 0,
+            'line_total' => $saleTotal,
+        ]],
+        'subtotal' => $saleTotal,
+        'discount' => 0,
+        'tax' => 0,
         'total' => $saleTotal,
-        'payment_method' => ['Cash', 'Bank', 'Split', 'Credit'][$saleIndex % 4],
-        'status' => ['Cash'=>'Paid','Bank'=>'Paid','Split'=>'Partially Paid','Credit'=>'Unpaid'][['Cash', 'Bank', 'Split', 'Credit'][$saleIndex % 4]],
-        'paid_amount' => ['Cash'=>$saleTotal,'Bank'=>$saleTotal,'Split'=>(int)round($saleTotal * 0.5),'Credit'=>0][['Cash', 'Bank', 'Split', 'Credit'][$saleIndex % 4]],
-        'due_amount' => ['Cash'=>0,'Bank'=>0,'Split'=>$saleTotal-(int)round($saleTotal * 0.5),'Credit'=>$saleTotal][['Cash', 'Bank', 'Split', 'Credit'][$saleIndex % 4]],
+        'payment_method' => $paymentMethod,
+        'payment_reference' => $paymentMethod === 'Cash' ? '—' : sprintf('PAY-26-%05d', $saleIndex),
+        'notes' => 'Illustrative demo transaction',
+        'status' => ['Cash'=>'Paid','Bank'=>'Paid','Split'=>'Partially Paid','Credit'=>'Unpaid'][$paymentMethod],
+        'paid_amount' => $paidAmount,
+        'due_amount' => $saleTotal - $paidAmount,
     ];
 }
 foreach ($demoCustomers as &$customer) $customer['balance'] = 0;
