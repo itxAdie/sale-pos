@@ -676,6 +676,8 @@ $pageDefinitions = [
     'all-customers.php' => ['title'=>'All Customers','tableTitle'=>'Customer Directory','parent'=>'Customers','mode'=>'none','breadcrumbs'=>[['label'=>'Home','url'=>'dashboard.php'],['label'=>'Customers','url'=>null]]],
     'add-customer.php' => ['title'=>'Add Customer','parent'=>'Customers','mode'=>'none','breadcrumbs'=>[['label'=>'Home','url'=>'dashboard.php'],['label'=>'Customers','url'=>'all-customers.php'],['label'=>'Add Customer','url'=>null]]],
     'customer-ledger.php' => ['title'=>'Customer Ledger','parent'=>'Customers','mode'=>'none','breadcrumbs'=>[['label'=>'Home','url'=>'dashboard.php'],['label'=>'Customers','url'=>'all-customers.php'],['label'=>'Customer Ledger','url'=>null]]],
+    'supplier-payments.php' => ['title'=>'Supplier Payments','tableTitle'=>'Supplier Payment Register','parent'=>'Suppliers','mode'=>'table','columns'=>['Date','Payment Reference','Supplier','Purchase Reference','Amount','Method','Status'],'breadcrumbs'=>[['label'=>'Home','url'=>'dashboard.php'],['label'=>'Suppliers','url'=>'all-suppliers.php'],['label'=>'Supplier Payments','url'=>null]]],
+    'add-supplier-payment.php' => ['title'=>'Record Supplier Payment','parent'=>'Suppliers','mode'=>'form','fields'=>[['label'=>'Supplier','type'=>'text'],['label'=>'Purchase Reference','type'=>'text'],['label'=>'Payment Date','type'=>'date'],['label'=>'Amount (PKR)','type'=>'number'],['label'=>'Payment Method','type'=>'text'],['label'=>'Reference / Notes','type'=>'text']]],
     'inventory-adjustments.php' => ['title'=>'Inventory Adjustments','tableTitle'=>'Stock Movement History','parent'=>'Products','mode'=>'table','columns'=>['Date','Reference','Product','Movement','Quantity Change','Reason','Employee'],'breadcrumbs'=>[['label'=>'Home','url'=>'dashboard.php'],['label'=>'Products','url'=>'all-products.php'],['label'=>'Inventory Adjustments','url'=>null]]],
     'add-stock-adjustment.php' => ['title'=>'Add Stock Adjustment','parent'=>'Products','mode'=>'form','fields'=>[['label'=>'Product','type'=>'text'],['label'=>'Adjustment Type','type'=>'text'],['label'=>'Quantity','type'=>'number'],['label'=>'Reason','type'=>'text'],['label'=>'Notes','type'=>'textarea']]],
     'tax.php' => [
@@ -720,6 +722,7 @@ $pageActionsByPage = [
     'all-purchases.php' => [['label' => 'Add Purchase', 'url' => 'add-purchase.php']],
     'all-branches.php' => [['label' => 'Add Branch', 'url' => 'add-branch.php']],
     'all-suppliers.php' => [['label' => 'Add Supplier', 'url' => 'add-supplier.php']],
+    'supplier-payments.php' => [['label' => 'Record Payment', 'url' => 'add-supplier-payment.php']],
     'all-sales.php' => [['label' => 'Add Sale', 'url' => 'add-sale.php']],
     'all-expenses.php' => [['label' => 'Add Expense', 'url' => 'add-expense.php']],
     'all-employees.php' => [['label' => 'Add Employee', 'url' => 'add-employee.php']],
