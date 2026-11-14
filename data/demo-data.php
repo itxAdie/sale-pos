@@ -78,14 +78,14 @@ $demoSuppliers = [
 ];
 
 $demoCustomers = [
-    ['id' => 1, 'customer_name' => 'Walk-in Customer', 'phone' => '—', 'email' => '', 'address' => 'Walk-in', 'balance' => 0, 'status' => 'Active'],
-    ['id' => 2, 'customer_name' => 'Muhammad Ahmed', 'phone' => '0300-5550202', 'email' => 'm.ahmed@example.test', 'address' => 'Farid Town, Okara', 'balance' => 1250, 'status' => 'Active'],
-    ['id' => 3, 'customer_name' => 'Sana Khalid', 'phone' => '0301-5550203', 'email' => 'sana.khalid@example.test', 'address' => 'Model Town, Okara', 'balance' => 0, 'status' => 'Active'],
-    ['id' => 4, 'customer_name' => 'Usman Farooq', 'phone' => '0302-5550204', 'email' => 'usman.farooq@example.test', 'address' => 'A-Block, Okara', 'balance' => 780, 'status' => 'Active'],
-    ['id' => 5, 'customer_name' => 'Ayesha Noor', 'phone' => '0303-5550205', 'email' => 'ayesha.noor@example.test', 'address' => 'Depalpur Road, Okara', 'balance' => 0, 'status' => 'Active'],
-    ['id' => 6, 'customer_name' => 'Hira Aslam', 'phone' => '0304-5550206', 'email' => 'hira.aslam@example.test', 'address' => 'Renala Road, Okara', 'balance' => 450, 'status' => 'Active'],
-    ['id' => 7, 'customer_name' => 'Ali Hassan', 'phone' => '0305-5550207', 'email' => 'ali.hassan@example.test', 'address' => 'Garden Town, Okara', 'balance' => 0, 'status' => 'Active'],
-    ['id' => 8, 'customer_name' => 'Mariam Iqbal', 'phone' => '0306-5550208', 'email' => 'mariam.iqbal@example.test', 'address' => 'Rehman Colony, Okara', 'balance' => 920, 'status' => 'Active'],
+    ['id' => 1, 'customer_name' => 'Walk-in Customer', 'phone' => '—', 'email' => '', 'address' => ''address' => 'Walk-in', 'opening_balance' => 0, 'balance' => 0, 'status' => 'Active'],
+    ['id' => 2, 'customer_name' => 'Muhammad Ahmed', 'phone' => '0300-5550202', 'email' => 'm.ahmed@example.test', 'address' => ''address' => 'Farid Town, Okara', 'opening_balance' => 0, 'balance' => 1250, 'status' => 'Active'],
+    ['id' => 3, 'customer_name' => 'Sana Khalid', 'phone' => '0301-5550203', 'email' => 'sana.khalid@example.test', 'address' => ''address' => 'Model Town, Okara', 'opening_balance' => 0, 'balance' => 0, 'status' => 'Active'],
+    ['id' => 4, 'customer_name' => 'Usman Farooq', 'phone' => '0302-5550204', 'email' => 'usman.farooq@example.test', 'address' => ''address' => 'A-Block, Okara', 'opening_balance' => 0, 'balance' => 780, 'status' => 'Active'],
+    ['id' => 5, 'customer_name' => 'Ayesha Noor', 'phone' => '0303-5550205', 'email' => 'ayesha.noor@example.test', 'address' => ''address' => 'Depalpur Road, Okara', 'opening_balance' => 0, 'balance' => 0, 'status' => 'Active'],
+    ['id' => 6, 'customer_name' => 'Hira Aslam', 'phone' => '0304-5550206', 'email' => 'hira.aslam@example.test', 'address' => ''address' => 'Renala Road, Okara', 'opening_balance' => 0, 'balance' => 450, 'status' => 'Active'],
+    ['id' => 7, 'customer_name' => 'Ali Hassan', 'phone' => '0305-5550207', 'email' => 'ali.hassan@example.test', 'address' => ''address' => 'Garden Town, Okara', 'opening_balance' => 0, 'balance' => 0, 'status' => 'Active'],
+    ['id' => 8, 'customer_name' => 'Mariam Iqbal', 'phone' => '0306-5550208', 'email' => 'mariam.iqbal@example.test', 'address' => ''address' => 'Rehman Colony, Okara', 'opening_balance' => 0, 'balance' => 920, 'status' => 'Active'],
 ];
 
 $demoEmployees = [
@@ -198,14 +198,23 @@ $demoCustomerSummary = [];
 $demoCustomerLedger = [];
 foreach ($demoCustomers as $customer) {
     $customerId = (int) $customer['id'];
+    $openingBalance = (int) ($customer['opening_balance'] ?? 0);
     $demoCustomerSummary[$customerId] = [
         'total_sales' => 0,
         'total_paid' => 0,
-        'outstanding' => 0,
+        'outstanding' => $openingBalance,
         'invoice_count' => 0,
         'last_sale_date' => '—',
     ];
     $demoCustomerLedger[$customerId] = [];
+    if ($openingBalance > 0) {
+        $demoCustomerLedger[$customerId][] = [
+            'date' => '2026-11-01', 'sort_order' => 0,
+            'reference' => 'OPEN-CUS-' . sprintf('%04d', $customerId),
+            'description' => 'Opening balance',
+            'debit' => $openingBalance, 'credit' => 0,
+        ];
+    }
 }
 foreach ($demoSales as $sale) {
     foreach ($demoCustomers as $customer) {
@@ -297,17 +306,39 @@ $demoExpenseTypes = [
 ];
 $demoSupplierLedger = [];
 $runningSupplierBalances = [];
+foreach ($demoSuppliers as $supplier) {
+    $supplierName = $supplier['supplier_name'];
+    $opening = (float) ($supplier['opening_balance'] ?? 0);
+    $runningSupplierBalances[$supplierName] = $opening;
+    if ($opening > 0) {
+        $demoSupplierLedger[] = [
+            'date' => '2026-11-01', 'supplier' => $supplierName,
+            'description' => 'Opening payable balance',
+            'debit' => '0.00', 'credit' => number_format($opening, 2, '.', ''),
+            'balance' => number_format($opening, 2, '.', ''),
+        ];
+    }
+}
 foreach ($demoPurchases as $purchase) {
     $supplierName = $purchase['supplier'];
     if (!isset($runningSupplierBalances[$supplierName])) $runningSupplierBalances[$supplierName] = 0;
-    $runningSupplierBalances[$supplierName] += (int) $purchase['total'] - (int) $purchase['paid'];
+    $runningSupplierBalances[$supplierName] += (int) $purchase['total'];
     $demoSupplierLedger[] = [
         'date' => $purchase['date'], 'supplier' => $supplierName,
-        'description' => 'Purchase ' . $purchase['reference'] . ' (payment applied)',
-        'debit' => number_format($purchase['paid'], 2, '.', ''),
-        'credit' => number_format($purchase['total'], 2, '.', ''),
+        'description' => 'Purchase invoice ' . $purchase['reference'],
+        'debit' => '0.00', 'credit' => number_format($purchase['total'], 2, '.', ''),
         'balance' => number_format($runningSupplierBalances[$supplierName], 2, '.', ''),
     ];
+    if ((int) $purchase['paid'] > 0) {
+        $runningSupplierBalances[$supplierName] -= (int) $purchase['paid'];
+        $demoSupplierLedger[] = [
+            'date' => $purchase['date'], 'supplier' => $supplierName,
+            'description' => 'Payment ' . $purchase['payment_reference'],
+            'debit' => number_format($purchase['paid'], 2, '.', ''),
+            'credit' => '0.00',
+            'balance' => number_format($runningSupplierBalances[$supplierName], 2, '.', ''),
+        ];
+    }
 }
 $demoBranchLedger = [];
 $runningBranchBalance = 0;
