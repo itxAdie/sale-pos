@@ -85,7 +85,6 @@ switch ($currentPage) {
         break;
 }
 ?>
-?>
 <main class="app-main">
   <?php include '../layout/page-header.php'; ?>
   <div class="app-content">
