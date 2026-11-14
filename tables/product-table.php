@@ -1,22 +1,6 @@
       <!--begin::App Main-->
       <main class="app-main">
-        <div class="app-content-header">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-sm-6">
-                <h1 class="mb-0 fs-3">All Products</h1>
-              </div>
-              <div class="col-sm-6">
-                <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb float-sm-end">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">All Products</li>
-                  </ol>
-                </nav>
-              </div>
-            </div>
-          </div>
-        </div>
+        <?php include '../layout/page-header.php'; ?>
         <div class="app-content">
           <div class="container-fluid">
             <div class="card">
