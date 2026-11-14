@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-  <?php include '../include/head.php'; ?>
+  <?php include '../include/page-config.php'; include '../include/head.php'; ?>
   <!--begin::Body-->
   <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
     <!--begin::App Wrapper-->
