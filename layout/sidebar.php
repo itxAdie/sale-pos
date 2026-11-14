@@ -92,7 +92,7 @@
                   <li class="nav-item">
                     <a href="./generate-tags.php" class="nav-link<?= $currentPage === 'generate-tags.php' ? ' active' : '' ?>">
                       <i class="nav-icon bi bi-upc"></i>
-                      <p>Genrate Tags</p>
+                      <p>Generate Tags</p>
                     </a>
                   </li>
                 </ul>
@@ -113,7 +113,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./add-branch.php" class="nav-link<?= $currentPage === 'add-branch.php' ? ' active' : '' ?>">
+                    <a href="./add-branch.php" class="nav-link<?= in_array($currentPage, ['add-branch.php','edit-branch.php'], true) ? ' active' : '' ?>">
                       <i class="nav-icon bi bi-door-open"></i>
                       <p>Add Branch</p>
                     </a>
@@ -141,7 +141,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./add-supplier.php" class="nav-link<?= $currentPage === 'add-supplier.php' ? ' active' : '' ?>">
+                    <a href="./add-supplier.php" class="nav-link<?= in_array($currentPage, ['add-supplier.php','edit-supplier.php'], true) ? ' active' : '' ?>">
                       <i class="nav-icon bi bi-person-add"></i>
                       <p>Add Supplier</p>
                     </a>
@@ -187,7 +187,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./add-expense.php" class="nav-link<?= $currentPage === 'add-expense.php' ? ' active' : '' ?>">
+                    <a href="./add-expense.php" class="nav-link<?= in_array($currentPage, ['add-expense.php','edit-expense.php'], true) ? ' active' : '' ?>">
                       <i class="nav-icon bi bi-cash-stack"></i>
                       <p>Add Expense</p>
                     </a>
@@ -216,7 +216,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./add-employee.php" class="nav-link<?= $currentPage === 'add-employee.php' ? ' active' : '' ?>">
+                    <a href="./add-employee.php" class="nav-link<?= in_array($currentPage, ['add-employee.php','edit-employee.php'], true) ? ' active' : '' ?>">
                       <i class="nav-icon bi bi-person-add"></i>
                       <p>Add Employee</p>
                     </a>
