@@ -78,14 +78,14 @@ $demoSuppliers = [
 ];
 
 $demoCustomers = [
-    ['id' => 1, 'customer_name' => 'Walk-in Customer', 'phone' => '—', 'email' => '', 'address' => ''address' => 'Walk-in', 'opening_balance' => 0, 'balance' => 0, 'status' => 'Active'],
-    ['id' => 2, 'customer_name' => 'Muhammad Ahmed', 'phone' => '0300-5550202', 'email' => 'm.ahmed@example.test', 'address' => ''address' => 'Farid Town, Okara', 'opening_balance' => 0, 'balance' => 1250, 'status' => 'Active'],
-    ['id' => 3, 'customer_name' => 'Sana Khalid', 'phone' => '0301-5550203', 'email' => 'sana.khalid@example.test', 'address' => ''address' => 'Model Town, Okara', 'opening_balance' => 0, 'balance' => 0, 'status' => 'Active'],
-    ['id' => 4, 'customer_name' => 'Usman Farooq', 'phone' => '0302-5550204', 'email' => 'usman.farooq@example.test', 'address' => ''address' => 'A-Block, Okara', 'opening_balance' => 0, 'balance' => 780, 'status' => 'Active'],
-    ['id' => 5, 'customer_name' => 'Ayesha Noor', 'phone' => '0303-5550205', 'email' => 'ayesha.noor@example.test', 'address' => ''address' => 'Depalpur Road, Okara', 'opening_balance' => 0, 'balance' => 0, 'status' => 'Active'],
-    ['id' => 6, 'customer_name' => 'Hira Aslam', 'phone' => '0304-5550206', 'email' => 'hira.aslam@example.test', 'address' => ''address' => 'Renala Road, Okara', 'opening_balance' => 0, 'balance' => 450, 'status' => 'Active'],
-    ['id' => 7, 'customer_name' => 'Ali Hassan', 'phone' => '0305-5550207', 'email' => 'ali.hassan@example.test', 'address' => ''address' => 'Garden Town, Okara', 'opening_balance' => 0, 'balance' => 0, 'status' => 'Active'],
-    ['id' => 8, 'customer_name' => 'Mariam Iqbal', 'phone' => '0306-5550208', 'email' => 'mariam.iqbal@example.test', 'address' => ''address' => 'Rehman Colony, Okara', 'opening_balance' => 0, 'balance' => 920, 'status' => 'Active'],
+    ['id' => 1, 'customer_name' => 'Walk-in Customer', 'phone' => '—', 'email' => '', 'address' => 'Walk-in', 'opening_balance' => 0, 'balance' => 0, 'status' => 'Active'],
+    ['id' => 2, 'customer_name' => 'Muhammad Ahmed', 'phone' => '0300-5550202', 'email' => 'm.ahmed@example.test', 'address' => 'Farid Town, Okara', 'opening_balance' => 0, 'balance' => 1250, 'status' => 'Active'],
+    ['id' => 3, 'customer_name' => 'Sana Khalid', 'phone' => '0301-5550203', 'email' => 'sana.khalid@example.test', 'address' => 'Model Town, Okara', 'opening_balance' => 0, 'balance' => 0, 'status' => 'Active'],
+    ['id' => 4, 'customer_name' => 'Usman Farooq', 'phone' => '0302-5550204', 'email' => 'usman.farooq@example.test', 'address' => 'A-Block, Okara', 'opening_balance' => 0, 'balance' => 780, 'status' => 'Active'],
+    ['id' => 5, 'customer_name' => 'Ayesha Noor', 'phone' => '0303-5550205', 'email' => 'ayesha.noor@example.test', 'address' => 'Depalpur Road, Okara', 'opening_balance' => 0, 'balance' => 0, 'status' => 'Active'],
+    ['id' => 6, 'customer_name' => 'Hira Aslam', 'phone' => '0304-5550206', 'email' => 'hira.aslam@example.test', 'address' => 'Renala Road, Okara', 'opening_balance' => 0, 'balance' => 450, 'status' => 'Active'],
+    ['id' => 7, 'customer_name' => 'Ali Hassan', 'phone' => '0305-5550207', 'email' => 'ali.hassan@example.test', 'address' => 'Garden Town, Okara', 'opening_balance' => 0, 'balance' => 0, 'status' => 'Active'],
+    ['id' => 8, 'customer_name' => 'Mariam Iqbal', 'phone' => '0306-5550208', 'email' => 'mariam.iqbal@example.test', 'address' => 'Rehman Colony, Okara', 'opening_balance' => 0, 'balance' => 920, 'status' => 'Active'],
 ];
 
 $demoEmployees = [
