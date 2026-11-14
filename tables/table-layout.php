@@ -208,6 +208,8 @@ if (isset($entityEditRoutes[$currentPage])) {
               ['name'=>'email','label'=>'Email Address','type'=>'email'],
               ['name'=>'address','label'=>'Street Address','type'=>'text'],
               ['name'=>'city','label'=>'City','type'=>'select','options'=>['Okara','Lahore','Faisalabad','Multan','Other']],
+              ['name'=>'opening_balance','label'=>'Opening Balance (PKR)','type'=>'number'],
+              ['name'=>'payment_terms','label'=>'Payment Terms','type'=>'select','options'=>['Cash','7 days','15 days','30 days']],
               ['name'=>'status','label'=>'Status','type'=>'select','options'=>['Active','Inactive']],
             ],
             'employee'=>[
@@ -216,14 +218,18 @@ if (isset($entityEditRoutes[$currentPage])) {
               ['name'=>'phone','label'=>'Phone Number','type'=>'tel','required'=>true],
               ['name'=>'email','label'=>'Email Address','type'=>'email'],
               ['name'=>'branch','label'=>'Assigned Branch','type'=>'select','options'=>array_column($demoBranches,'branch_name')],
+              ['name'=>'joining_date','label'=>'Joining Date','type'=>'date'],
+              ['name'=>'employment_type','label'=>'Employment Type','type'=>'select','options'=>['Full-time','Part-time','Contract']],
               ['name'=>'status','label'=>'Employment Status','type'=>'select','options'=>['Active','Inactive']],
             ],
             'branch'=>[
               ['name'=>'branch_name','label'=>'Branch Name','type'=>'text','required'=>true],
               ['name'=>'branch_code','label'=>'Branch Code','type'=>'text','required'=>true],
               ['name'=>'address','label'=>'Full Address','type'=>'text','required'=>true],
+              ['name'=>'city','label'=>'City','type'=>'text','required'=>true],
               ['name'=>'phone','label'=>'Contact Number','type'=>'tel'],
               ['name'=>'manager','label'=>'Branch Manager','type'=>'select','options'=>array_column($demoEmployees,'employee_name')],
+              ['name'=>'opening_date','label'=>'Opening Date','type'=>'date'],
               ['name'=>'status','label'=>'Branch Status','type'=>'select','options'=>['Active','Inactive']],
             ],
             'expense'=>[
@@ -233,6 +239,7 @@ if (isset($entityEditRoutes[$currentPage])) {
               ['name'=>'amount','label'=>'Amount (PKR)','type'=>'number','required'=>true],
               ['name'=>'date','label'=>'Expense Date','type'=>'date'],
               ['name'=>'payment_method','label'=>'Payment Method','type'=>'select','options'=>['Cash','Bank Transfer','Card']],
+              ['name'=>'reference','label'=>'Payment / Voucher Reference','type'=>'text'],
               ['name'=>'description','label'=>'Description / Notes','type'=>'textarea'],
             ],
           ];
