@@ -41,12 +41,8 @@ $pageDefinitions = [
         'parent' => 'Products',
         'mode' => 'table',
         'columns' => [
-            'Product',
-            'SKU',
-            'Category',
-            'Price',
-            'Stock',
-            'Status'
+            'Product', 'SKU', 'Barcode', 'Category', 'Price', 'Purchase Price',
+            'Price Type', 'Price Group', 'Stock Quantity', 'Status'
         ],
         'breadcrumbs' => [
             [
