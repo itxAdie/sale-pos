@@ -112,6 +112,7 @@ if (isset($entityEditRoutes[$currentPage])) {
     $tableColumnDefinitions[] = ['title'=>'Actions','field'=>'actions','headerSort'=>false,'formatter'=>'editLink'];
 }
 ?>
+  <main class="app-main">
   <?php include '../layout/page-header.php'; ?>
   <div class="app-content">
     <div class="container-fluid">
