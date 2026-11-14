@@ -76,14 +76,14 @@ $demoSuppliers = [
 ];
 
 $demoCustomers = [
-    ['id' => 1, 'customer_name' => 'Walk-in Customer', 'phone' => '—', 'balance' => 0, 'status' => 'Active'],
-    ['id' => 2, 'customer_name' => 'Muhammad Ahmed', 'phone' => '0300-5550202', 'balance' => 1250, 'status' => 'Active'],
-    ['id' => 3, 'customer_name' => 'Sana Khalid', 'phone' => '0301-5550203', 'balance' => 0, 'status' => 'Active'],
-    ['id' => 4, 'customer_name' => 'Usman Farooq', 'phone' => '0302-5550204', 'balance' => 780, 'status' => 'Active'],
-    ['id' => 5, 'customer_name' => 'Ayesha Noor', 'phone' => '0303-5550205', 'balance' => 0, 'status' => 'Active'],
-    ['id' => 6, 'customer_name' => 'Hira Aslam', 'phone' => '0304-5550206', 'balance' => 450, 'status' => 'Active'],
-    ['id' => 7, 'customer_name' => 'Ali Hassan', 'phone' => '0305-5550207', 'balance' => 0, 'status' => 'Active'],
-    ['id' => 8, 'customer_name' => 'Mariam Iqbal', 'phone' => '0306-5550208', 'balance' => 920, 'status' => 'Active'],
+    ['id' => 1, 'customer_name' => 'Walk-in Customer', 'phone' => '—', 'email' => '', 'address' => 'Walk-in', 'balance' => 0, 'status' => 'Active'],
+    ['id' => 2, 'customer_name' => 'Muhammad Ahmed', 'phone' => '0300-5550202', 'email' => 'm.ahmed@example.test', 'address' => 'Farid Town, Okara', 'balance' => 1250, 'status' => 'Active'],
+    ['id' => 3, 'customer_name' => 'Sana Khalid', 'phone' => '0301-5550203', 'email' => 'sana.khalid@example.test', 'address' => 'Model Town, Okara', 'balance' => 0, 'status' => 'Active'],
+    ['id' => 4, 'customer_name' => 'Usman Farooq', 'phone' => '0302-5550204', 'email' => 'usman.farooq@example.test', 'address' => 'A-Block, Okara', 'balance' => 780, 'status' => 'Active'],
+    ['id' => 5, 'customer_name' => 'Ayesha Noor', 'phone' => '0303-5550205', 'email' => 'ayesha.noor@example.test', 'address' => 'Depalpur Road, Okara', 'balance' => 0, 'status' => 'Active'],
+    ['id' => 6, 'customer_name' => 'Hira Aslam', 'phone' => '0304-5550206', 'email' => 'hira.aslam@example.test', 'address' => 'Renala Road, Okara', 'balance' => 450, 'status' => 'Active'],
+    ['id' => 7, 'customer_name' => 'Ali Hassan', 'phone' => '0305-5550207', 'email' => 'ali.hassan@example.test', 'address' => 'Garden Town, Okara', 'balance' => 0, 'status' => 'Active'],
+    ['id' => 8, 'customer_name' => 'Mariam Iqbal', 'phone' => '0306-5550208', 'email' => 'mariam.iqbal@example.test', 'address' => 'Rehman Colony, Okara', 'balance' => 920, 'status' => 'Active'],
 ];
 
 $demoEmployees = [
@@ -161,6 +161,65 @@ $demoOutOfStockCount = count(array_filter($demoProducts, static function ($produ
 $demoExpenseTotal = array_sum(array_column($demoExpenses, 'amount'));
 $demoNetProfit = $demoGrossProfit - $demoExpenseTotal;
 $demoCustomerDue = array_sum(array_column($demoCustomers, 'balance'));
+
+/**
+ * Customer summaries and transaction-level ledgers are derived from sales.
+ * A sale increases the receivable (debit); its collected payment reduces it
+ * (credit). The closing balance therefore matches each customer's due amount.
+ */
+$demoCustomerSummary = [];
+$demoCustomerLedger = [];
+foreach ($demoCustomers as $customer) {
+    $customerId = (int) $customer['id'];
+    $demoCustomerSummary[$customerId] = [
+        'total_sales' => 0,
+        'total_paid' => 0,
+        'outstanding' => 0,
+        'invoice_count' => 0,
+        'last_sale_date' => '—',
+    ];
+    $demoCustomerLedger[$customerId] = [];
+}
+foreach ($demoSales as $sale) {
+    foreach ($demoCustomers as $customer) {
+        if ($customer['customer_name'] !== $sale['customer']) continue;
+        $customerId = (int) $customer['id'];
+        $demoCustomerSummary[$customerId]['total_sales'] += (int) $sale['total'];
+        $demoCustomerSummary[$customerId]['total_paid'] += (int) $sale['paid_amount'];
+        $demoCustomerSummary[$customerId]['outstanding'] += (int) $sale['due_amount'];
+        $demoCustomerSummary[$customerId]['invoice_count']++;
+        $demoCustomerSummary[$customerId]['last_sale_date'] = $sale['date'];
+        $demoCustomerLedger[$customerId][] = [
+            'date' => $sale['date'], 'sort_order' => 1,
+            'reference' => $sale['invoice'], 'description' => 'Sale ' . $sale['invoice'],
+            'debit' => (int) $sale['total'], 'credit' => 0,
+        ];
+        if ((int) $sale['paid_amount'] > 0) {
+            $demoCustomerLedger[$customerId][] = [
+                'date' => $sale['date'], 'sort_order' => 2,
+                'reference' => 'RCPT-' . substr($sale['invoice'], -5),
+                'description' => 'Payment received for ' . $sale['invoice'],
+                'debit' => 0, 'credit' => (int) $sale['paid_amount'],
+            ];
+        }
+        break;
+    }
+}
+foreach ($demoCustomerLedger as $customerId => &$entries) {
+    usort($entries, static function ($a, $b) {
+        $dateCompare = strcmp($a['date'], $b['date']);
+        return $dateCompare !== 0 ? $dateCompare : ($a['sort_order'] <=> $b['sort_order']);
+    });
+    $runningBalance = 0;
+    foreach ($entries as &$entry) {
+        $runningBalance += $entry['debit'] - $entry['credit'];
+        $entry['balance'] = $runningBalance;
+        unset($entry['sort_order']);
+    }
+    unset($entry);
+}
+unset($entries);
+
 
 
 // Additional coherent records used by the shared list pages.
