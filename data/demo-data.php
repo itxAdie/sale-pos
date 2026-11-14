@@ -174,6 +174,8 @@ for ($purchaseIndex = 1; $purchaseIndex <= 15; $purchaseIndex++) {
         'branch' => 'Main Branch',
         'total' => $purchaseTotal = 8500 + (($purchaseIndex * 1723) % 14500),
         'paid' => min($purchaseTotal, 5000 + (($purchaseIndex * 613) % 9000)),
+        'due' => max(0, $purchaseTotal - min($purchaseTotal, 5000 + (($purchaseIndex * 613) % 9000))),
+        'payment_method' => ['Cash', 'Bank Transfer', 'Cheque'][$purchaseIndex % 3],
         'status' => min($purchaseTotal, 5000 + (($purchaseIndex * 613) % 9000)) >= $purchaseTotal ? 'Paid' : 'Partially Paid',
     ];
 }
