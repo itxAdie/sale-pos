@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-  <?php include '../include/page-config.php'; include '../include/head.php'; ?>
+  <?php include '../include/page-config.php'; require_once '../data/demo-data.php'; include '../include/head.php'; ?>
   <!--begin::Body-->
   <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
     <!--begin::App Wrapper-->
@@ -25,7 +25,7 @@
                 <!--begin::Small Box Widget 1-->
                 <div class="small-box text-bg-primary">
                   <div class="inner">
-                    <h3>15,000,000</h3>
+                    <h3><?= number_format($demoSalesTotal) ?></h3>
 
                     <p>Total Sales</p>
                   </div>
@@ -54,7 +54,7 @@
                 <!--begin::Small Box Widget 2-->
                 <div class="small-box text-bg-success">
                   <div class="inner">
-                    <h3>5,000,000</h3>
+                    <h3><?= number_format($demoExpenseTotal) ?></h3>
 
                     <p>Total Expenses</p>
                   </div>
@@ -83,7 +83,7 @@
                 <!--begin::Small Box Widget 3-->
                 <div class="small-box text-bg-warning">
                   <div class="inner">
-                    <h3>44</h3>
+                    <h3><?= number_format(count($demoEmployees)) ?></h3>
 
                     <p>Total Employees</p>
                   </div>
@@ -112,7 +112,7 @@
                 <!--begin::Small Box Widget 4-->
                 <div class="small-box text-bg-danger">
                   <div class="inner">
-                    <h3>15</h3>
+                    <h3><?= number_format(count($demoBranches)) ?></h3>
 
                     <p>Total Branches</p>
                   </div>
@@ -159,7 +159,7 @@
                       <canvas
                         id="revenue-chart"
                         role="img"
-                        aria-label="Area chart of digital goods and electronics sales, January to July 2023"
+                        aria-label="Demo retail sales trend for Nomi Shopping Mall"
                       ></canvas>
                     </div>
                   </div>
@@ -176,7 +176,7 @@
 
                   <div class="info-box-content">
                     <span class="info-box-text">Total Products</span>
-                    <span class="info-box-number">52,000</span>
+                    <span class="info-box-number"><?= number_format($demoProductCount) ?></span>
                   </div>
                   <!-- /.info-box-content -->
                 </div>
@@ -189,7 +189,7 @@
 
                   <div class="info-box-content">
                     <span class="info-box-text">Total Cash In Hand</span>
-                    <span class="info-box-number">920,050</span>
+                    <span class="info-box-number">Rs. <?= number_format($demoCashBalance) ?></span>
                   </div>
                   <!-- /.info-box-content -->
                 </div>
@@ -202,7 +202,7 @@
 
                   <div class="info-box-content">
                     <span class="info-box-text">Total Market Due</span>
-                    <span class="info-box-number">114,381</span>
+                    <span class="info-box-number">Rs. <?= number_format($demoCustomerDue) ?></span>
                   </div>
                   <!-- /.info-box-content -->
                 </div>
