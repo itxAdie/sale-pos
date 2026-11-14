@@ -43,9 +43,13 @@ $pageDefinitions = [
         'columns' => [
             'Product',
             'SKU',
+            'Barcode',
             'Category',
-            'Price',
-            'Stock',
+            'Purchase Price',
+            'Selling Price',
+            'Pricing Type',
+            'Price Group',
+            'Stock Quantity',
             'Status'
         ],
         'breadcrumbs' => [
@@ -151,6 +155,7 @@ $pageDefinitions = [
             'Branch Code',
             'Address',
             'Phone',
+            'Manager',
             'Status'
         ],
         'breadcrumbs' => [
@@ -216,6 +221,7 @@ $pageDefinitions = [
             'Phone',
             'Email',
             'Address',
+            'City',
             'Status'
         ],
         'breadcrumbs' => [
@@ -285,6 +291,9 @@ $pageDefinitions = [
             'Customer',
             'Branch',
             'Total',
+            'Paid Amount',
+            'Due Amount',
+            'Payment Method',
             'Payment Status'
         ],
         'breadcrumbs' => [
@@ -351,9 +360,11 @@ $pageDefinitions = [
         'columns' => [
             'Expense #',
             'Date',
+            'Expense Title',
             'Expense Type',
             'Branch',
             'Amount',
+            'Payment Method',
             'Status'
         ],
         'breadcrumbs' => [
