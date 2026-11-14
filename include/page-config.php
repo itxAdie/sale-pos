@@ -156,11 +156,7 @@ $pageDefinitions = [
         'breadcrumbs' => [
             [
                 'label' => 'Home',
-                'url' => 'dashboard.php'
-            ],
-            [
-                'label' => 'Branches',
-                'url' => null
+                'url' => '#'
             ],
             [
                 'label' => 'All Branches',
