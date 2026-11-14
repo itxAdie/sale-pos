@@ -31,7 +31,7 @@ switch ($currentPage) {
         break;
     case 'all-purchases.php':
         $tableDemoData = array_map(static function ($p) use ($money) {
-            return ['reference'=>$p['reference'],'date'=>$p['date'],'supplier'=>$p['supplier'],'branch'=>$p['branch'],'total'=>$money($p['total']),'paid'=>$money($p['paid']),'status'=>$p['status']];
+            return ['reference'=>$p['reference'],'date'=>$p['date'],'supplier'=>$p['supplier'],'branch'=>$p['branch'],'total'=>$money($p['total']),'paid_amount'=>$money($p['paid']),'due_amount'=>$money($p['due']),'payment_method'=>$p['payment_method'],'payment_status'=>$p['status']];
         }, $demoPurchases);
         break;
     case 'all-products.php':
