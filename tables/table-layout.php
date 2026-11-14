@@ -196,8 +196,8 @@ if (isset($entityEditRoutes[$currentPage])) {
         </script>
       <?php elseif (in_array($currentPage, ['add-supplier.php','edit-supplier.php','add-employee.php','edit-employee.php','add-branch.php','edit-branch.php','add-expense.php','edit-expense.php'], true)): ?>
         <?php
-          $editing = str_starts_with($currentPage, 'edit-');
-          $entity = str_contains($currentPage, 'supplier') ? 'supplier' : (str_contains($currentPage, 'employee') ? 'employee' : (str_contains($currentPage, 'branch') ? 'branch' : 'expense'));
+          $editing = strpos($currentPage, 'edit-') === 0;
+          $entity = strpos($currentPage, 'supplier') !== false ? 'supplier' : (strpos($currentPage, 'employee') !== false ? 'employee' : (strpos($currentPage, 'branch') !== false ? 'branch' : 'expense'));
           $recordId = max(1, (int)($_GET['id'] ?? 1));
           $record = [];
           $entityRows = ['supplier'=>$demoSuppliers,'employee'=>$demoEmployees,'branch'=>$demoBranches,'expense'=>$demoExpenses];
