@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-  <?php include '../include/head.php'; ?>
+  <?php include '../include/page-config.php'; include '../include/head.php'; ?>
   <style>
     @page {
       margin: 0;
@@ -72,29 +72,8 @@
 
       <!--begin::App Main-->
       <main class="app-main">
-        <!--begin::App Content Header-->
-        <div class="app-content-header">
-          <!--begin::Container-->
-          <div class="container-fluid">
-            <!--begin::Row-->
-            <div class="row">
-              <div class="col-sm-6">
-                <h1 class="mb-0 fs-3">POS</h1>
-              </div>
-              <div class="col-sm-6">
-                <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb float-sm-end">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">POS</li>
-                  </ol>
-                </nav>
-              </div>
-            </div>
-            <!--end::Row-->
-          </div>
-          <!--end::Container-->
-        </div>
-        <!--end::App Content Header-->
+        <?php include '../layout/page-header.php'; ?>
+
         <!--begin::App Content-->
         <div class="app-content">
           <!--begin::Container-->
