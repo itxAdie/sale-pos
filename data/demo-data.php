@@ -98,12 +98,12 @@ $demoBranches = [
 ];
 
 $demoExpenses = [
-    ['id' => 1, 'title' => 'Shop Rent', 'type' => 'Rent', 'amount' => 35000],
-    ['id' => 2, 'title' => 'Electricity Bill', 'type' => 'Utilities', 'amount' => 12800],
-    ['id' => 3, 'title' => 'Staff Salaries', 'type' => 'Salaries', 'amount' => 52000],
-    ['id' => 4, 'title' => 'Internet & Phone', 'type' => 'Utilities', 'amount' => 3500],
-    ['id' => 5, 'title' => 'Shop Supplies', 'type' => 'General', 'amount' => 4200],
-    ['id' => 6, 'title' => 'Delivery & Transport', 'type' => 'Transport', 'amount' => 6800],
+    ['id' => 1, 'title' => 'Shop Rent', 'type' => 'Rent', 'amount' => 35000, 'date' => '2026-11-11', 'branch' => 'Main Branch', 'payment_method' => 'Bank Transfer', 'description' => 'Monthly premises rent'],
+    ['id' => 2, 'title' => 'Electricity Bill', 'type' => 'Utilities', 'amount' => 12800, 'date' => '2026-11-12', 'branch' => 'Main Branch', 'payment_method' => 'Cash', 'description' => 'Monthly electricity bill'],
+    ['id' => 3, 'title' => 'Staff Salaries', 'type' => 'Salaries', 'amount' => 52000, 'date' => '2026-11-13', 'branch' => 'Main Branch', 'payment_method' => 'Bank Transfer', 'description' => 'Monthly staff payroll'],
+    ['id' => 4, 'title' => 'Internet & Phone', 'type' => 'Utilities', 'amount' => 3500, 'date' => '2026-11-13', 'branch' => 'Main Branch', 'payment_method' => 'Cash', 'description' => 'Internet and phone service'],
+    ['id' => 5, 'title' => 'Shop Supplies', 'type' => 'General', 'amount' => 4200, 'date' => '2026-11-14', 'branch' => 'Main Branch', 'payment_method' => 'Cash', 'description' => 'Cleaning and stationery supplies'],
+    ['id' => 6, 'title' => 'Delivery & Transport', 'type' => 'Transport', 'amount' => 6800, 'date' => '2026-11-14', 'branch' => 'Main Branch', 'payment_method' => 'Cash', 'description' => 'Goods delivery and transport'],
 ];
 
 
@@ -118,8 +118,21 @@ for ($saleIndex = 1; $saleIndex <= 40; $saleIndex++) {
         'customer' => $demoCustomers[$saleIndex % count($demoCustomers)]['customer_name'],
         'total' => $saleTotal,
         'payment_method' => ['Cash', 'Bank', 'Split', 'Credit'][$saleIndex % 4],
-        'status' => $saleIndex % 7 === 0 ? 'Partially Paid' : 'Paid',
+        'status' => ['Cash'=>'Paid','Bank'=>'Paid','Split'=>'Partially Paid','Credit'=>'Unpaid'][['Cash', 'Bank', 'Split', 'Credit'][$saleIndex % 4]],
+        'paid_amount' => ['Cash'=>$saleTotal,'Bank'=>$saleTotal,'Split'=>(int)round($saleTotal * 0.5),'Credit'=>0][['Cash', 'Bank', 'Split', 'Credit'][$saleIndex % 4]],
+        'due_amount' => ['Cash'=>0,'Bank'=>0,'Split'=>$saleTotal-(int)round($saleTotal * 0.5),'Credit'=>$saleTotal][['Cash', 'Bank', 'Split', 'Credit'][$saleIndex % 4]],
     ];
+}
+foreach ($demoCustomers as &$customer) $customer['balance'] = 0;
+unset($customer);
+foreach ($demoSales as $sale) {
+    if ($sale['due_amount'] > 0) {
+        $customerName = $sale['customer'];
+        foreach ($demoCustomers as &$customer) {
+            if ($customer['customer_name'] === $customerName) $customer['balance'] += $sale['due_amount'];
+        }
+        unset($customer);
+    }
 }
 $demoSalesTotal = array_sum(array_column($demoSales, 'total'));
 $demoPurchasesTotal = 0;
@@ -128,7 +141,7 @@ for ($purchaseIndex = 1; $purchaseIndex <= 15; $purchaseIndex++) {
 }
 $demoCashBalance = array_sum(array_map(static function ($sale) {
     if ($sale['payment_method'] === 'Cash') return (float) $sale['total'];
-    if ($sale['payment_method'] === 'Split') return (float) $sale['total'] * 0.5;
+    if ($sale['payment_method'] === 'Split') return (float) $sale['paid_amount'];
     return 0;
 }, $demoSales));
 $demoGrossProfit = (int) round($demoSalesTotal * 0.28);
@@ -211,8 +224,8 @@ $demoSalesReport = array_values($demoSalesReport);
 $demoExpenseReport = [];
 foreach ($demoExpenses as $expense) {
     $demoExpenseReport[] = [
-        'date' => '2026-11-' . str_pad((string) (10 + $expense['id']), 2, '0', STR_PAD_LEFT),
-        'branch' => 'Main Branch', 'expense_type' => $expense['type'],
+        'date' => $expense['date'],
+        'branch' => $expense['branch'], 'expense_type' => $expense['type'],
         'amount' => number_format($expense['amount'], 2, '.', ''),
         'notes' => $expense['title'],
     ];
