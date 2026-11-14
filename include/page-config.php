@@ -37,6 +37,7 @@ $pageDefinitions = [
     ],
     'all-products.php' => [
         'title' => 'All Products',
+        'tableTitle' => 'Product List',
         'parent' => 'Products',
         'mode' => 'table',
         'columns' => [
@@ -142,6 +143,7 @@ $pageDefinitions = [
     ],
     'all-branches.php' => [
         'title' => 'All Branches',
+        'tableTitle' => 'Branch List',
         'parent' => 'Branches',
         'mode' => 'table',
         'columns' => [
@@ -209,6 +211,7 @@ $pageDefinitions = [
     ],
     'all-suppliers.php' => [
         'title' => 'All Suppliers',
+        'tableTitle' => 'Supplier List',
         'parent' => 'Suppliers',
         'mode' => 'table',
         'columns' => [
@@ -277,6 +280,7 @@ $pageDefinitions = [
     ],
     'all-sales.php' => [
         'title' => 'All Sales',
+        'tableTitle' => 'Sales List',
         'parent' => 'Sales',
         'mode' => 'table',
         'columns' => [
@@ -345,6 +349,7 @@ $pageDefinitions = [
     ],
     'all-expenses.php' => [
         'title' => 'All Expenses',
+        'tableTitle' => 'Expense List',
         'parent' => 'Expenses',
         'mode' => 'table',
         'columns' => [
@@ -417,6 +422,7 @@ $pageDefinitions = [
     ],
     'expense-types.php' => [
         'title' => 'Expense Types',
+        'tableTitle' => 'Expense Types',
         'parent' => 'Expenses',
         'mode' => 'table',
         'columns' => [
@@ -441,6 +447,7 @@ $pageDefinitions = [
     ],
     'all-employees.php' => [
         'title' => 'All Employees',
+        'tableTitle' => 'Employee List',
         'parent' => 'Employees',
         'mode' => 'table',
         'columns' => [
@@ -509,6 +516,7 @@ $pageDefinitions = [
     ],
     'branch-ledger.php' => [
         'title' => 'Branch Ledger',
+        'tableTitle' => 'Branch Ledger',
         'parent' => 'Ledger',
         'mode' => 'table',
         'columns' => [
@@ -536,6 +544,7 @@ $pageDefinitions = [
     ],
     'supplier-ledger.php' => [
         'title' => 'Supplier Ledger',
+        'tableTitle' => 'Supplier Ledger',
         'parent' => 'Ledger',
         'mode' => 'table',
         'columns' => [
@@ -563,6 +572,7 @@ $pageDefinitions = [
     ],
     'sales-report.php' => [
         'title' => 'Sales Report',
+        'tableTitle' => 'Sales Report',
         'parent' => 'Reports',
         'mode' => 'table',
         'columns' => [
@@ -590,6 +600,7 @@ $pageDefinitions = [
     ],
     'expense-report.php' => [
         'title' => 'Expense Report',
+        'tableTitle' => 'Expense Report',
         'parent' => 'Reports',
         'mode' => 'table',
         'columns' => [
@@ -616,6 +627,7 @@ $pageDefinitions = [
     ],
     'profit-loss.php' => [
         'title' => 'Profit/Loss Statement',
+        'tableTitle' => 'Profit/Loss Statement',
         'parent' => 'Reports',
         'mode' => 'table',
         'columns' => [
@@ -642,6 +654,7 @@ $pageDefinitions = [
     ],
     'users.php' => [
         'title' => 'Users',
+        'tableTitle' => 'Users List',
         'parent' => 'Users',
         'mode' => 'table',
         'columns' => [
@@ -664,6 +677,7 @@ $pageDefinitions = [
     ],
     'tax.php' => [
         'title' => 'Tax',
+        'tableTitle' => 'Tax List',
         'parent' => 'Tax',
         'mode' => 'table',
         'columns' => [
