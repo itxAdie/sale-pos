@@ -53,6 +53,8 @@ foreach ($demoProductNames as $category => $names) {
             'sku' => sprintf('NOM-%04d', $productSequence),
             'barcode' => sprintf('200%010d', $productSequence),
             'category' => $category,
+            'unit' => ['Piece','Pack','Pair','Box','Set'][$productSequence % 5],
+            'reorder_level' => 5,
             'price' => number_format($price, 2, '.', ''),
             'purchase_price' => number_format($price * 0.62, 2, '.', ''),
             'stock' => $stock,
@@ -65,12 +67,12 @@ foreach ($demoProductNames as $category => $names) {
 }
 
 $demoSuppliers = [
-    ['id' => 1, 'supplier_name' => 'Al-Madina Wholesale Traders', 'contact_person' => 'Usman Ali', 'phone' => '0301-5550101', 'email' => 'sales@almadina.example.test', 'address' => 'Grain Market, Okara', 'city' => 'Okara', 'status' => 'Active'],
+    ['id' => 1, 'supplier_name' => 'Al-Madina Wholesale Traders', 'contact_person' => 'Usman Ali', 'phone' => '0301-5550101', 'email' => 'sales@almadina.example.test', 'address' => 'Grain Market, Okara', 'city' => 'Okara', 'opening_balance' => 0, 'payment_terms' => 'Cash / 7 days', 'status' => 'Active'],
     ['id' => 2, 'supplier_name' => 'Hassan General Suppliers', 'contact_person' => 'Hassan Raza', 'phone' => '0302-5550102', 'email' => 'orders@hassangeneral.example.test', 'address' => 'Depalpur Road, Okara', 'city' => 'Okara', 'status' => 'Active'],
-    ['id' => 3, 'supplier_name' => 'Punjab Plastic House', 'contact_person' => 'Imran Shah', 'phone' => '0303-5550103', 'email' => 'info@punjabplastic.example.test', 'address' => 'Shah Alam Market, Lahore', 'city' => 'Lahore', 'status' => 'Active'],
+    ['id' => 3, 'supplier_name' => 'Punjab Plastic House', 'contact_person' => 'Imran Shah', 'phone' => '0303-5550103', 'email' => 'info@punjabplastic.example.test', 'address' => 'Shah Alam Market, Lahore', 'city' => 'Lahore', 'opening_balance' => 2500, 'payment_terms' => '15 days', 'status' => 'Active'],
     ['id' => 4, 'supplier_name' => 'City Stationers & Toys', 'contact_person' => 'Bilal Ahmed', 'phone' => '0304-5550104', 'email' => 'sales@citystationers.example.test', 'address' => 'College Road, Okara', 'city' => 'Okara', 'status' => 'Active'],
     ['id' => 5, 'supplier_name' => 'Bright Home Distributors', 'contact_person' => 'Farhan Iqbal', 'phone' => '0305-5550105', 'email' => 'orders@brighthome.example.test', 'address' => 'Brandreth Road, Lahore', 'city' => 'Lahore', 'status' => 'Active'],
-    ['id' => 6, 'supplier_name' => 'Care & Beauty Wholesale', 'contact_person' => 'Ahsan Malik', 'phone' => '0306-5550106', 'email' => 'care@beautywholesale.example.test', 'address' => 'Rail Bazaar, Faisalabad', 'city' => 'Faisalabad', 'status' => 'Active'],
+    ['id' => 6, 'supplier_name' => 'Care & Beauty Wholesale', 'contact_person' => 'Ahsan Malik', 'phone' => '0306-5550106', 'email' => 'care@beautywholesale.example.test', 'address' => 'Rail Bazaar, Faisalabad', 'city' => 'Faisalabad', 'opening_balance' => 0, 'payment_terms' => '7 days', 'status' => 'Active'],
     ['id' => 7, 'supplier_name' => 'Smart Accessories Supply', 'contact_person' => 'Waqas Tariq', 'phone' => '0307-5550107', 'email' => 'sales@smartsupply.example.test', 'address' => 'Hall Road, Lahore', 'city' => 'Lahore', 'status' => 'Active'],
     ['id' => 8, 'supplier_name' => 'Rana Trading Company', 'contact_person' => 'Rana Shahid', 'phone' => '0308-5550108', 'email' => 'rana@trading.example.test', 'address' => 'M.A. Jinnah Road, Okara', 'city' => 'Okara', 'status' => 'Active'],
 ];
@@ -87,23 +89,23 @@ $demoCustomers = [
 ];
 
 $demoEmployees = [
-    ['id' => 1, 'employee_name' => 'Ahmed Raza', 'role' => 'Store Manager', 'phone' => '0300-5550301', 'email' => 'ahmed.raza@example.test', 'branch' => 'Main Branch', 'status' => 'Active'],
+    ['id' => 1, 'employee_name' => 'Ahmed Raza', 'role' => 'Store Manager', 'phone' => '0300-5550301', 'email' => 'ahmed.raza@example.test', 'branch' => 'Main Branch', 'joining_date' => '2024-03-01', 'employment_type' => 'Full-time', 'status' => 'Active'],
     ['id' => 2, 'employee_name' => 'Hamza Tariq', 'role' => 'Cashier', 'phone' => '0300-5550302', 'email' => 'hamza.tariq@example.test', 'branch' => 'Main Branch', 'status' => 'Active'],
     ['id' => 3, 'employee_name' => 'Fatima Noor', 'role' => 'Inventory Assistant', 'phone' => '0300-5550303', 'email' => 'fatima.noor@example.test', 'branch' => 'Main Branch', 'status' => 'Active'],
     ['id' => 4, 'employee_name' => 'Usman Javed', 'role' => 'Sales Assistant', 'phone' => '0300-5550304', 'email' => 'usman.javed@example.test', 'branch' => 'Main Branch', 'status' => 'Active'],
 ];
 
 $demoBranches = [
-    ['id' => 1, 'branch_name' => 'Main Branch', 'branch_code' => 'OKR-001', 'address' => 'Main Bazaar, Okara, Punjab', 'phone' => '044-2550100', 'manager' => 'Ahmed Raza', 'status' => 'Active'],
+    ['id' => 1, 'branch_name' => 'Main Branch', 'branch_code' => 'OKR-001', 'address' => 'Main Bazaar, Okara, Punjab', 'phone' => '044-2550100', 'manager' => 'Ahmed Raza', 'city' => 'Okara', 'opening_date' => '2023-06-01', 'status' => 'Active'],
 ];
 
 $demoExpenses = [
-    ['id' => 1, 'title' => 'Shop Rent', 'type' => 'Rent', 'amount' => 35000, 'date' => '2026-11-11', 'branch' => 'Main Branch', 'payment_method' => 'Bank Transfer', 'description' => 'Monthly premises rent'],
-    ['id' => 2, 'title' => 'Electricity Bill', 'type' => 'Utilities', 'amount' => 12800, 'date' => '2026-11-12', 'branch' => 'Main Branch', 'payment_method' => 'Cash', 'description' => 'Monthly electricity bill'],
-    ['id' => 3, 'title' => 'Staff Salaries', 'type' => 'Salaries', 'amount' => 52000, 'date' => '2026-11-13', 'branch' => 'Main Branch', 'payment_method' => 'Bank Transfer', 'description' => 'Monthly staff payroll'],
-    ['id' => 4, 'title' => 'Internet & Phone', 'type' => 'Utilities', 'amount' => 3500, 'date' => '2026-11-13', 'branch' => 'Main Branch', 'payment_method' => 'Cash', 'description' => 'Internet and phone service'],
-    ['id' => 5, 'title' => 'Shop Supplies', 'type' => 'General', 'amount' => 4200, 'date' => '2026-11-14', 'branch' => 'Main Branch', 'payment_method' => 'Cash', 'description' => 'Cleaning and stationery supplies'],
-    ['id' => 6, 'title' => 'Delivery & Transport', 'type' => 'Transport', 'amount' => 6800, 'date' => '2026-11-14', 'branch' => 'Main Branch', 'payment_method' => 'Cash', 'description' => 'Goods delivery and transport'],
+    ['id' => 1, 'title' => 'Shop Rent', 'type' => 'Rent', 'amount' => 35000, 'date' => '2026-11-11', 'branch' => 'Main Branch', 'payment_method' => 'Bank Transfer', 'description' => 'Monthly premises rent', 'reference' => 'EXP-26-0001', 'status' => 'Paid'],
+    ['id' => 2, 'title' => 'Electricity Bill', 'type' => 'Utilities', 'amount' => 12800, 'date' => '2026-11-12', 'branch' => 'Main Branch', 'payment_method' => 'Cash', 'description' => 'Monthly electricity bill', 'reference' => 'EXP-26-0002', 'status' => 'Paid'],
+    ['id' => 3, 'title' => 'Staff Salaries', 'type' => 'Salaries', 'amount' => 52000, 'date' => '2026-11-13', 'branch' => 'Main Branch', 'payment_method' => 'Bank Transfer', 'description' => 'Monthly staff payroll', 'reference' => 'EXP-26-0003', 'status' => 'Paid'],
+    ['id' => 4, 'title' => 'Internet & Phone', 'type' => 'Utilities', 'amount' => 3500, 'date' => '2026-11-13', 'branch' => 'Main Branch', 'payment_method' => 'Cash', 'description' => 'Internet and phone service', 'reference' => 'EXP-26-0004', 'status' => 'Paid'],
+    ['id' => 5, 'title' => 'Shop Supplies', 'type' => 'General', 'amount' => 4200, 'date' => '2026-11-14', 'branch' => 'Main Branch', 'payment_method' => 'Cash', 'description' => 'Cleaning and stationery supplies', 'reference' => 'EXP-26-0005', 'status' => 'Paid'],
+    ['id' => 6, 'title' => 'Delivery & Transport', 'type' => 'Transport', 'amount' => 6800, 'date' => '2026-11-14', 'branch' => 'Main Branch', 'payment_method' => 'Cash', 'description' => 'Goods delivery and transport', 'reference' => 'EXP-26-0006', 'status' => 'Paid'],
 ];
 
 
@@ -257,12 +259,35 @@ for ($purchaseIndex = 1; $purchaseIndex <= 15; $purchaseIndex++) {
         'supplier' => $demoSuppliers[($purchaseIndex - 1) % count($demoSuppliers)]['supplier_name'],
         'branch' => 'Main Branch',
         'total' => $purchaseTotal = 8500 + (($purchaseIndex * 1723) % 14500),
+        'discount' => 0,
+        'tax' => 0,
+        'item_count' => 1,
+        'items' => [[
+            'product_id' => $demoProducts[($purchaseIndex * 2) % count($demoProducts)]['id'],
+            'product' => $demoProducts[($purchaseIndex * 2) % count($demoProducts)]['product'],
+            'sku' => $demoProducts[($purchaseIndex * 2) % count($demoProducts)]['sku'],
+            'quantity' => 10,
+            'unit_cost' => round($purchaseTotal / 10, 2),
+            'line_total' => $purchaseTotal,
+        ]],
+        'received_status' => 'Received',
+        'payment_reference' => sprintf('SUP-PAY-26-%04d', $purchaseIndex),
         'paid' => min($purchaseTotal, 5000 + (($purchaseIndex * 613) % 9000)),
         'due' => max(0, $purchaseTotal - min($purchaseTotal, 5000 + (($purchaseIndex * 613) % 9000))),
         'payment_method' => ['Cash', 'Bank Transfer', 'Cheque'][$purchaseIndex % 3],
         'status' => min($purchaseTotal, 5000 + (($purchaseIndex * 613) % 9000)) >= $purchaseTotal ? 'Paid' : 'Partially Paid',
     ];
 }
+$demoUsers = [
+    ['id'=>1,'name'=>'Ahmed Raza','username'=>'ahmed.raza','role'=>'Store Manager','permissions'=>'Dashboard, POS, Products, Sales, Purchases, Reports','last_login'=>'2026-11-14 09:15','status'=>'Active'],
+    ['id'=>2,'name'=>'Hamza Tariq','username'=>'hamza.cashier','role'=>'Cashier','permissions'=>'POS, Sales, Customers','last_login'=>'2026-11-14 10:42','status'=>'Active'],
+    ['id'=>3,'name'=>'Fatima Noor','username'=>'fatima.inventory','role'=>'Inventory Assistant','permissions'=>'Products, Purchases, Inventory Adjustments','last_login'=>'2026-11-13 17:30','status'=>'Active'],
+    ['id'=>4,'name'=>'Usman Javed','username'=>'usman.sales','role'=>'Sales Assistant','permissions'=>'POS, Sales, Customers','last_login'=>'2026-11-12 16:05','status'=>'Active'],
+];
+$demoTaxRates = [
+    ['tax_name'=>'Standard Sales Tax (sample)','tax_code'=>'GST-SAMPLE','rate'=>'0.00%','applies_to'=>'Retail sales','calculation'=>'Exclusive','effective_from'=>'2026-01-01','status'=>'Not configured'],
+    ['tax_name'=>'Zero Rated (sample)','tax_code'=>'ZERO-SAMPLE','rate'=>'0.00%','applies_to'=>'Eligible items only','calculation'=>'Exclusive','effective_from'=>'2026-01-01','status'=>'Inactive'],
+];
 $demoExpenseTypes = [
     ['expense_type' => 'Rent', 'description' => 'Monthly shop rent and premises charges', 'status' => 'Active'],
     ['expense_type' => 'Utilities', 'description' => 'Electricity, internet and phone bills', 'status' => 'Active'],
@@ -345,9 +370,9 @@ foreach ($demoPurchases as $purchase) {
  * not post back into the demo product quantities above.
  */
 $demoStockMovements = [
-    ['date'=>'2026-11-14 09:10','reference'=>'OPEN-0001','product'=>'Microfiber Duster','movement'=>'Opening Balance','change'=>40,'reason'=>'Initial stock setup','employee'=>'Ahmed Raza'],
-    ['date'=>'2026-11-14 10:25','reference'=>'ADJ-0008','product'=>'USB Cable','movement'=>'Stock In','change'=>12,'reason'=>'Physical count correction','employee'=>'Fatima Noor'],
-    ['date'=>'2026-11-13 17:40','reference'=>'ADJ-0007','product'=>'Face Powder','movement'=>'Stock Out','change'=>-3,'reason'=>'Damaged goods','employee'=>'Ahmed Raza'],
-    ['date'=>'2026-11-13 15:15','reference'=>'PUR-26-0014','product'=>'A4 Notebook','movement'=>'Purchase Received','change'=>50,'reason'=>'Supplier delivery','employee'=>'Fatima Noor'],
-    ['date'=>'2026-11-12 19:05','reference'=>'ADJ-0006','product'=>'Plastic Mug','movement'=>'Stock Out','change'=>-2,'reason'=>'Sample / internal use','employee'=>'Hamza Tariq'],
+    ['date'=>'2026-11-14 09:10','reference'=>'OPEN-0001','product'=>'Microfiber Duster','movement'=>'Opening Balance','change'=>40,'reason'=>'Initial stock setup','employee'=>'Ahmed Raza','product_sku'=>'NOM-0001','stock_before'=>0,'stock_after'=>40],
+    ['date'=>'2026-11-14 10:25','reference'=>'ADJ-0008','product'=>'USB Cable','movement'=>'Stock In','change'=>12,'reason'=>'Physical count correction','employee'=>'Fatima Noor','product_sku'=>'NOM-0091','stock_before'=>8,'stock_after'=>20],
+    ['date'=>'2026-11-13 17:40','reference'=>'ADJ-0007','product'=>'Face Powder','movement'=>'Stock Out','change'=>-3,'reason'=>'Damaged goods','employee'=>'Ahmed Raza','product_sku'=>'NOM-0051','stock_before'=>15,'stock_after'=>12],
+    ['date'=>'2026-11-13 15:15','reference'=>'PUR-26-0014','product'=>'A4 Notebook','movement'=>'Purchase Received','change'=>50,'reason'=>'Supplier delivery','employee'=>'Fatima Noor','product_sku'=>'NOM-0034','stock_before'=>10,'stock_after'=>60],
+    ['date'=>'2026-11-12 19:05','reference'=>'ADJ-0006','product'=>'Plastic Mug','movement'=>'Stock Out','change'=>-2,'reason'=>'Sample / internal use','employee'=>'Hamza Tariq','product_sku'=>'NOM-0021','stock_before'=>12,'stock_after'=>10],
 ];
