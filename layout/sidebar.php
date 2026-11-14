@@ -215,6 +215,16 @@
               </li>
 
               <li class="nav-item">
+                <a href="#" class="nav-link"><i class="nav-icon bi bi-bag-check"></i><p>Purchases<i class="nav-arrow bi bi-chevron-right"></i></p></a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item"><a href="./all-purchases.php" class="nav-link<?= $currentPage === 'all-purchases.php' ? ' active' : '' ?>"><i class="nav-icon bi bi-list-ul"></i><p>All Purchases</p></a></li>
+                  <li class="nav-item"><a href="./add-purchase.php" class="nav-link<?= $currentPage === 'add-purchase.php' ? ' active' : '' ?>"><i class="nav-icon bi bi-plus-circle"></i><p>Add Purchase</p></a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a href="./all-customers.php" class="nav-link<?= in_array($currentPage, ['all-customers.php','add-customer.php','customer-ledger.php'], true) ? ' active' : '' ?>"><i class="nav-icon bi bi-person-vcard"></i><p>Customers</p></a>
+              </li>
+              <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="nav-icon bi bi-clipboard2-data"></i>
                   <p>
