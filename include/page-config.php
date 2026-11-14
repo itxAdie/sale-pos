@@ -680,6 +680,10 @@ $pageDefinitions = [
     'add-supplier-payment.php' => ['title'=>'Record Supplier Payment','parent'=>'Suppliers','mode'=>'form','fields'=>[['label'=>'Supplier','type'=>'text'],['label'=>'Purchase Reference','type'=>'text'],['label'=>'Payment Date','type'=>'date'],['label'=>'Amount (PKR)','type'=>'number'],['label'=>'Payment Method','type'=>'text'],['label'=>'Reference / Notes','type'=>'text']]],
     'inventory-adjustments.php' => ['title'=>'Inventory Adjustments','tableTitle'=>'Stock Movement History','parent'=>'Products','mode'=>'table','columns'=>['Date','Reference','Product','Movement','Quantity Change','Reason','Employee'],'breadcrumbs'=>[['label'=>'Home','url'=>'dashboard.php'],['label'=>'Products','url'=>'all-products.php'],['label'=>'Inventory Adjustments','url'=>null]]],
     'add-stock-adjustment.php' => ['title'=>'Add Stock Adjustment','parent'=>'Products','mode'=>'form','fields'=>[['label'=>'Product','type'=>'text'],['label'=>'Adjustment Type','type'=>'text'],['label'=>'Quantity','type'=>'number'],['label'=>'Reason','type'=>'text'],['label'=>'Notes','type'=>'textarea']]],
+    'edit-supplier.php' => ['title'=>'Edit Supplier','parent'=>'Suppliers','mode'=>'none','breadcrumbs'=>[['label'=>'Home','url'=>'dashboard.php'],['label'=>'Suppliers','url'=>'all-suppliers.php'],['label'=>'Edit Supplier','url'=>null]]],
+    'edit-employee.php' => ['title'=>'Edit Employee','parent'=>'Employees','mode'=>'none','breadcrumbs'=>[['label'=>'Home','url'=>'dashboard.php'],['label'=>'Employees','url'=>'all-employees.php'],['label'=>'Edit Employee','url'=>null]]],
+    'edit-branch.php' => ['title'=>'Edit Branch','parent'=>'Branches','mode'=>'none','breadcrumbs'=>[['label'=>'Home','url'=>'dashboard.php'],['label'=>'Branches','url'=>'all-branches.php'],['label'=>'Edit Branch','url'=>null]]],
+    'edit-expense.php' => ['title'=>'Edit Expense','parent'=>'Expenses','mode'=>'none','breadcrumbs'=>[['label'=>'Home','url'=>'dashboard.php'],['label'=>'Expenses','url'=>'all-expenses.php'],['label'=>'Edit Expense','url'=>null]]],
     'tax.php' => [
         'title' => 'Tax',
         'tableTitle' => 'Tax List',
