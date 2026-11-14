@@ -119,18 +119,12 @@ $pageDefinitions = [
         'parent' => 'Products',
         'mode' => 'form',
         'fields' => [
-            [
-                'label' => 'Product',
-                'type' => 'text'
-            ],
-            [
-                'label' => 'Number of Tags',
-                'type' => 'number'
-            ],
-            [
-                'label' => 'Tag Size',
-                'type' => 'text'
-            ]
+            ['label' => 'Product / SKU / Barcode', 'type' => 'text'],
+            ['label' => 'Number of Labels', 'type' => 'number'],
+            ['label' => 'Label Size', 'type' => 'text'],
+            ['label' => 'Barcode Format', 'type' => 'text'],
+            ['label' => 'Include Selling Price', 'type' => 'text'],
+            ['label' => 'Starting Position', 'type' => 'number']
         ],
         'breadcrumbs' => [
             [
@@ -178,26 +172,14 @@ $pageDefinitions = [
         'parent' => 'Branches',
         'mode' => 'form',
         'fields' => [
-            [
-                'label' => 'Branch Name',
-                'type' => 'text'
-            ],
-            [
-                'label' => 'Branch Code',
-                'type' => 'text'
-            ],
-            [
-                'label' => 'Address',
-                'type' => 'text'
-            ],
-            [
-                'label' => 'Phone',
-                'type' => 'tel'
-            ],
-            [
-                'label' => 'Manager',
-                'type' => 'text'
-            ]
+            ['label' => 'Branch Name', 'type' => 'text'],
+            ['label' => 'Branch Code', 'type' => 'text'],
+            ['label' => 'Address', 'type' => 'text'],
+            ['label' => 'City', 'type' => 'text'],
+            ['label' => 'Phone', 'type' => 'tel'],
+            ['label' => 'Manager', 'type' => 'text'],
+            ['label' => 'Opening Date', 'type' => 'date'],
+            ['label' => 'Status', 'type' => 'text']
         ],
         'breadcrumbs' => [
             [
@@ -250,26 +232,15 @@ $pageDefinitions = [
         'parent' => 'Suppliers',
         'mode' => 'form',
         'fields' => [
-            [
-                'label' => 'Supplier Name',
-                'type' => 'text'
-            ],
-            [
-                'label' => 'Contact Person',
-                'type' => 'text'
-            ],
-            [
-                'label' => 'Phone',
-                'type' => 'tel'
-            ],
-            [
-                'label' => 'Email',
-                'type' => 'email'
-            ],
-            [
-                'label' => 'Address',
-                'type' => 'text'
-            ]
+            ['label' => 'Supplier Name', 'type' => 'text'],
+            ['label' => 'Contact Person', 'type' => 'text'],
+            ['label' => 'Phone', 'type' => 'tel'],
+            ['label' => 'Email', 'type' => 'email'],
+            ['label' => 'Address', 'type' => 'text'],
+            ['label' => 'City', 'type' => 'text'],
+            ['label' => 'Opening Balance (PKR)', 'type' => 'number'],
+            ['label' => 'Payment Terms', 'type' => 'text'],
+            ['label' => 'Status', 'type' => 'text']
         ],
         'breadcrumbs' => [
             [
@@ -387,30 +358,14 @@ $pageDefinitions = [
         'parent' => 'Expenses',
         'mode' => 'form',
         'fields' => [
-            [
-                'label' => 'Expense Title',
-                'type' => 'text'
-            ],
-            [
-                'label' => 'Expense Type',
-                'type' => 'text'
-            ],
-            [
-                'label' => 'Branch',
-                'type' => 'text'
-            ],
-            [
-                'label' => 'Amount',
-                'type' => 'number'
-            ],
-            [
-                'label' => 'Date',
-                'type' => 'date'
-            ],
-            [
-                'label' => 'Description',
-                'type' => 'textarea'
-            ]
+            ['label' => 'Expense Title', 'type' => 'text'],
+            ['label' => 'Expense Type', 'type' => 'text'],
+            ['label' => 'Branch', 'type' => 'text'],
+            ['label' => 'Amount (PKR)', 'type' => 'number'],
+            ['label' => 'Date', 'type' => 'date'],
+            ['label' => 'Payment Method', 'type' => 'text'],
+            ['label' => 'Payment Reference', 'type' => 'text'],
+            ['label' => 'Description', 'type' => 'textarea']
         ],
         'breadcrumbs' => [
             [
@@ -487,26 +442,14 @@ $pageDefinitions = [
         'parent' => 'Employees',
         'mode' => 'form',
         'fields' => [
-            [
-                'label' => 'Full Name',
-                'type' => 'text'
-            ],
-            [
-                'label' => 'Role',
-                'type' => 'text'
-            ],
-            [
-                'label' => 'Phone',
-                'type' => 'tel'
-            ],
-            [
-                'label' => 'Email',
-                'type' => 'email'
-            ],
-            [
-                'label' => 'Branch',
-                'type' => 'text'
-            ]
+            ['label' => 'Full Name', 'type' => 'text'],
+            ['label' => 'Role', 'type' => 'text'],
+            ['label' => 'Phone', 'type' => 'tel'],
+            ['label' => 'Email', 'type' => 'email'],
+            ['label' => 'Branch', 'type' => 'text'],
+            ['label' => 'Joining Date', 'type' => 'date'],
+            ['label' => 'Employment Type', 'type' => 'text'],
+            ['label' => 'Status', 'type' => 'text']
         ],
         'breadcrumbs' => [
             [
@@ -706,7 +649,15 @@ $pageDefinitions = [
     'add-customer.php' => ['title'=>'Add Customer','parent'=>'Customers','mode'=>'none','breadcrumbs'=>[['label'=>'Home','url'=>'dashboard.php'],['label'=>'Customers','url'=>'all-customers.php'],['label'=>'Add Customer','url'=>null]]],
     'customer-ledger.php' => ['title'=>'Customer Ledger','parent'=>'Customers','mode'=>'none','breadcrumbs'=>[['label'=>'Home','url'=>'dashboard.php'],['label'=>'Customers','url'=>'all-customers.php'],['label'=>'Customer Ledger','url'=>null]]],
     'supplier-payments.php' => ['title'=>'Supplier Payments','tableTitle'=>'Supplier Payment Register','parent'=>'Suppliers','mode'=>'table','columns'=>['Date','Payment Reference','Supplier','Purchase Reference','Amount','Method','Status'],'breadcrumbs'=>[['label'=>'Home','url'=>'dashboard.php'],['label'=>'Suppliers','url'=>'all-suppliers.php'],['label'=>'Supplier Payments','url'=>null]]],
-    'add-supplier-payment.php' => ['title'=>'Record Supplier Payment','parent'=>'Suppliers','mode'=>'form','fields'=>[['label'=>'Supplier','type'=>'text'],['label'=>'Purchase Reference','type'=>'text'],['label'=>'Payment Date','type'=>'date'],['label'=>'Amount (PKR)','type'=>'number'],['label'=>'Payment Method','type'=>'text'],['label'=>'Reference / Notes','type'=>'text']]],
+    'add-supplier-payment.php' => ['title'=>'Record Supplier Payment','parent'=>'Suppliers','mode'=>'form','fields' => [
+            ['label' => 'Supplier', 'type' => 'text'],
+            ['label' => 'Purchase Reference', 'type' => 'text'],
+            ['label' => 'Payment Date', 'type' => 'date'],
+            ['label' => 'Amount (PKR)', 'type' => 'number'],
+            ['label' => 'Payment Method', 'type' => 'text'],
+            ['label' => 'Bank / Cheque Reference', 'type' => 'text'],
+            ['label' => 'Notes', 'type' => 'textarea']
+        ]],
     'inventory-adjustments.php' => ['title'=>'Inventory Adjustments','tableTitle'=>'Stock Movement History','parent'=>'Products','mode'=>'table','columns' => [
             'Date',
             'Reference',
@@ -719,7 +670,16 @@ $pageDefinitions = [
             'Reason',
             'Employee'
         ],'breadcrumbs'=>[['label'=>'Home','url'=>'dashboard.php'],['label'=>'Products','url'=>'all-products.php'],['label'=>'Inventory Adjustments','url'=>null]]],
-    'add-stock-adjustment.php' => ['title'=>'Add Stock Adjustment','parent'=>'Products','mode'=>'form','fields'=>[['label'=>'Product','type'=>'text'],['label'=>'Adjustment Type','type'=>'text'],['label'=>'Quantity','type'=>'number'],['label'=>'Reason','type'=>'text'],['label'=>'Notes','type'=>'textarea']]],
+    'add-stock-adjustment.php' => ['title'=>'Add Stock Adjustment','parent'=>'Products','mode'=>'form','fields' => [
+            ['label' => 'Product / SKU', 'type' => 'text'],
+            ['label' => 'Adjustment Type', 'type' => 'text'],
+            ['label' => 'Adjustment Date', 'type' => 'date'],
+            ['label' => 'Quantity Change', 'type' => 'number'],
+            ['label' => 'Reason', 'type' => 'text'],
+            ['label' => 'Employee', 'type' => 'text'],
+            ['label' => 'Reference', 'type' => 'text'],
+            ['label' => 'Notes', 'type' => 'textarea']
+        ]],
     'edit-supplier.php' => ['title'=>'Edit Supplier','parent'=>'Suppliers','mode'=>'none','breadcrumbs'=>[['label'=>'Home','url'=>'dashboard.php'],['label'=>'Suppliers','url'=>'all-suppliers.php'],['label'=>'Edit Supplier','url'=>null]]],
     'edit-employee.php' => ['title'=>'Edit Employee','parent'=>'Employees','mode'=>'none','breadcrumbs'=>[['label'=>'Home','url'=>'dashboard.php'],['label'=>'Employees','url'=>'all-employees.php'],['label'=>'Edit Employee','url'=>null]]],
     'edit-branch.php' => ['title'=>'Edit Branch','parent'=>'Branches','mode'=>'none','breadcrumbs'=>[['label'=>'Home','url'=>'dashboard.php'],['label'=>'Branches','url'=>'all-branches.php'],['label'=>'Edit Branch','url'=>null]]],
