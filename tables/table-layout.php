@@ -51,7 +51,7 @@ switch ($currentPage) {
         break;
     case 'all-sales.php':
         $tableDemoData = array_map(static function ($s) use ($money) {
-            return ['invoice'=>$s['invoice'],'date'=>$s['date'],'customer'=>$s['customer'],'branch'=>'Main Branch','total'=>$money($s['total']),'paid_amount'=>$money($s['paid_amount']),'due_amount'=>$money($s['due_amount']),'payment_method'=>$s['payment_method'],'payment_status'=>$s['status']];
+            return ['invoice'=>$s['invoice'],'date'=>$s['date'],'customer'=>$s['customer'],'branch'=>$s['branch'],'total'=>$money($s['total']),'paid_amount'=>$money($s['paid_amount']),'due_amount'=>$money($s['due_amount']),'payment_method'=>$s['payment_method'],'items'=>$s['item_count'],'cashier'=>$s['cashier'],'discount'=>$money($s['discount']),'payment_status'=>$s['status']];
         }, $demoSales);
         break;
     case 'all-expenses.php':
