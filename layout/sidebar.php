@@ -79,13 +79,13 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./product-add.php" class="nav-link">
+                    <a href="./product-add.php" class="nav-link<?= $currentPage === 'product-add.php' ? ' active' : '' ?>">
                       <i class="nav-icon bi bi-cart-plus"></i>
                       <p>Add Product</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./generate-tags.php" class="nav-link">
+                    <a href="./generate-tags.php" class="nav-link<?= $currentPage === 'generate-tags.php' ? ' active' : '' ?>">
                       <i class="nav-icon bi bi-upc"></i>
                       <p>Genrate Tags</p>
                     </a>
@@ -102,13 +102,13 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="./all-branches.php" class="nav-link">
+                    <a href="./all-branches.php" class="nav-link<?= $currentPage === 'all-branches.php' ? ' active' : '' ?>">
                       <i class="nav-icon bi bi-door-closed"></i>
                       <p>All Branches</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./add-branch.php" class="nav-link">
+                    <a href="./add-branch.php" class="nav-link<?= $currentPage === 'add-branch.php' ? ' active' : '' ?>">
                       <i class="nav-icon bi bi-door-open"></i>
                       <p>Add Branch</p>
                     </a>
@@ -125,13 +125,13 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="./all-suppliers.php" class="nav-link">
+                    <a href="./all-suppliers.php" class="nav-link<?= $currentPage === 'all-suppliers.php' ? ' active' : '' ?>">
                       <i class="nav-icon bi bi-people"></i>
                       <p>All Suppliers</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./add-supplier.php" class="nav-link">
+                    <a href="./add-supplier.php" class="nav-link<?= $currentPage === 'add-supplier.php' ? ' active' : '' ?>">
                       <i class="nav-icon bi bi-person-add"></i>
                       <p>Add Supplier</p>
                     </a>
@@ -148,13 +148,13 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="./all-sales.php" class="nav-link">
+                    <a href="./all-sales.php" class="nav-link<?= $currentPage === 'all-sales.php' ? ' active' : '' ?>">
                       <i class="nav-icon bi bi-cash-coin"></i>
                       <p>All Sales</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./add-sale.php" class="nav-link">
+                    <a href="./add-sale.php" class="nav-link<?= $currentPage === 'add-sale.php' ? ' active' : '' ?>">
                       <i class="nav-icon bi bi-cash-stack"></i>
                       <p>Add Sale</p>
                     </a>
@@ -171,19 +171,19 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="./all-expenses.php" class="nav-link">
+                    <a href="./all-expenses.php" class="nav-link<?= $currentPage === 'all-expenses.php' ? ' active' : '' ?>">
                       <i class="nav-icon bi bi-cash-coin"></i>
                       <p>All Expenses</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./add-expense.php" class="nav-link">
+                    <a href="./add-expense.php" class="nav-link<?= $currentPage === 'add-expense.php' ? ' active' : '' ?>">
                       <i class="nav-icon bi bi-cash-stack"></i>
                       <p>Add Expense</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./expense-types.php" class="nav-link">
+                    <a href="./expense-types.php" class="nav-link<?= $currentPage === 'expense-types.php' ? ' active' : '' ?>">
                       <i class="nav-icon bi bi-cash"></i>
                       <p>Expense Type</p>
                     </a>
@@ -200,13 +200,13 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="./all-employees.php" class="nav-link">
+                    <a href="./all-employees.php" class="nav-link<?= $currentPage === 'all-employees.php' ? ' active' : '' ?>">
                       <i class="nav-icon bi bi-people"></i>
                       <p>All Employees</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./add-employee.php" class="nav-link">
+                    <a href="./add-employee.php" class="nav-link<?= $currentPage === 'add-employee.php' ? ' active' : '' ?>">
                       <i class="nav-icon bi bi-person-add"></i>
                       <p>Add Employee</p>
                     </a>
@@ -224,13 +224,13 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="./branch-ledger.php" class="nav-link">
+                    <a href="./branch-ledger.php" class="nav-link<?= $currentPage === 'branch-ledger.php' ? ' active' : '' ?>">
                       <i class="nav-icon bi bi-shop"></i>
                       <p>Branch Ledger</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./supplier-ledger.php" class="nav-link">
+                    <a href="./supplier-ledger.php" class="nav-link<?= $currentPage === 'supplier-ledger.php' ? ' active' : '' ?>">
                       <i class="nav-icon bi bi-people"></i>
                       <p>Supplier Ledger</p>
                     </a>
@@ -247,19 +247,19 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="./sales-report.php" class="nav-link">
+                    <a href="./sales-report.php" class="nav-link<?= $currentPage === 'sales-report.php' ? ' active' : '' ?>">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Sales Report</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./expense-report.php" class="nav-link">
+                    <a href="./expense-report.php" class="nav-link<?= $currentPage === 'expense-report.php' ? ' active' : '' ?>">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Expense report</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./profit-loss.php" class="nav-link">
+                    <a href="./profit-loss.php" class="nav-link<?= $currentPage === 'profit-loss.php' ? ' active' : '' ?>">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Profit/Loss Statement</p>
                     </a>
