@@ -45,11 +45,13 @@ $pageDefinitions = [
             'SKU',
             'Barcode',
             'Category',
+            'Unit',
             'Purchase Price',
             'Selling Price',
             'Pricing Type',
             'Price Group',
             'Stock Quantity',
+            'Reorder Level',
             'Status'
         ],
         'breadcrumbs' => [
@@ -154,8 +156,10 @@ $pageDefinitions = [
             'Branch Name',
             'Branch Code',
             'Address',
+            'City',
             'Phone',
             'Manager',
+            'Opening Date',
             'Status'
         ],
         'breadcrumbs' => [
@@ -222,6 +226,8 @@ $pageDefinitions = [
             'Email',
             'Address',
             'City',
+            'Opening Balance',
+            'Payment Terms',
             'Status'
         ],
         'breadcrumbs' => [
@@ -357,6 +363,8 @@ $pageDefinitions = [
             'Branch',
             'Amount',
             'Payment Method',
+            'Payment Reference',
+            'Description',
             'Status'
         ],
         'breadcrumbs' => [
@@ -455,6 +463,8 @@ $pageDefinitions = [
             'Phone',
             'Email',
             'Branch',
+            'Joining Date',
+            'Employment Type',
             'Status'
         ],
         'breadcrumbs' => [
@@ -660,6 +670,7 @@ $pageDefinitions = [
             'Name',
             'Username',
             'Role',
+            'Permissions',
             'Last Login',
             'Status'
         ],
@@ -674,14 +685,40 @@ $pageDefinitions = [
             ]
         ]
     ],
-    'all-purchases.php' => ['title'=>'All Purchases','tableTitle'=>'Purchase Register','parent'=>'Purchases','mode'=>'table','columns'=>['Reference','Date','Supplier','Branch','Total','Paid Amount','Due Amount','Payment Method','Payment Status'],'breadcrumbs'=>[['label'=>'Home','url'=>'dashboard.php'],['label'=>'Purchases','url'=>null],['label'=>'All Purchases','url'=>null]]],
+    'all-purchases.php' => ['title'=>'All Purchases','tableTitle'=>'Purchase Register','parent'=>'Purchases','mode'=>'table','columns' => [
+            'Reference',
+            'Date',
+            'Supplier',
+            'Branch',
+            'Items',
+            'Total',
+            'Discount',
+            'Tax',
+            'Paid Amount',
+            'Due Amount',
+            'Payment Method',
+            'Payment Reference',
+            'Received Status',
+            'Payment Status'
+        ],'breadcrumbs'=>[['label'=>'Home','url'=>'dashboard.php'],['label'=>'Purchases','url'=>null],['label'=>'All Purchases','url'=>null]]],
     'add-purchase.php' => ['title'=>'Add Purchase','parent'=>'Purchases','mode'=>'none','breadcrumbs'=>[['label'=>'Home','url'=>'dashboard.php'],['label'=>'Purchases','url'=>'all-purchases.php'],['label'=>'Add Purchase','url'=>null]]],
     'all-customers.php' => ['title'=>'All Customers','tableTitle'=>'Customer Directory','parent'=>'Customers','mode'=>'none','breadcrumbs'=>[['label'=>'Home','url'=>'dashboard.php'],['label'=>'Customers','url'=>null]]],
     'add-customer.php' => ['title'=>'Add Customer','parent'=>'Customers','mode'=>'none','breadcrumbs'=>[['label'=>'Home','url'=>'dashboard.php'],['label'=>'Customers','url'=>'all-customers.php'],['label'=>'Add Customer','url'=>null]]],
     'customer-ledger.php' => ['title'=>'Customer Ledger','parent'=>'Customers','mode'=>'none','breadcrumbs'=>[['label'=>'Home','url'=>'dashboard.php'],['label'=>'Customers','url'=>'all-customers.php'],['label'=>'Customer Ledger','url'=>null]]],
     'supplier-payments.php' => ['title'=>'Supplier Payments','tableTitle'=>'Supplier Payment Register','parent'=>'Suppliers','mode'=>'table','columns'=>['Date','Payment Reference','Supplier','Purchase Reference','Amount','Method','Status'],'breadcrumbs'=>[['label'=>'Home','url'=>'dashboard.php'],['label'=>'Suppliers','url'=>'all-suppliers.php'],['label'=>'Supplier Payments','url'=>null]]],
     'add-supplier-payment.php' => ['title'=>'Record Supplier Payment','parent'=>'Suppliers','mode'=>'form','fields'=>[['label'=>'Supplier','type'=>'text'],['label'=>'Purchase Reference','type'=>'text'],['label'=>'Payment Date','type'=>'date'],['label'=>'Amount (PKR)','type'=>'number'],['label'=>'Payment Method','type'=>'text'],['label'=>'Reference / Notes','type'=>'text']]],
-    'inventory-adjustments.php' => ['title'=>'Inventory Adjustments','tableTitle'=>'Stock Movement History','parent'=>'Products','mode'=>'table','columns'=>['Date','Reference','Product','Movement','Quantity Change','Reason','Employee'],'breadcrumbs'=>[['label'=>'Home','url'=>'dashboard.php'],['label'=>'Products','url'=>'all-products.php'],['label'=>'Inventory Adjustments','url'=>null]]],
+    'inventory-adjustments.php' => ['title'=>'Inventory Adjustments','tableTitle'=>'Stock Movement History','parent'=>'Products','mode'=>'table','columns' => [
+            'Date',
+            'Reference',
+            'Product',
+            'SKU',
+            'Movement',
+            'Quantity Change',
+            'Stock Before',
+            'Stock After',
+            'Reason',
+            'Employee'
+        ],'breadcrumbs'=>[['label'=>'Home','url'=>'dashboard.php'],['label'=>'Products','url'=>'all-products.php'],['label'=>'Inventory Adjustments','url'=>null]]],
     'add-stock-adjustment.php' => ['title'=>'Add Stock Adjustment','parent'=>'Products','mode'=>'form','fields'=>[['label'=>'Product','type'=>'text'],['label'=>'Adjustment Type','type'=>'text'],['label'=>'Quantity','type'=>'number'],['label'=>'Reason','type'=>'text'],['label'=>'Notes','type'=>'textarea']]],
     'edit-supplier.php' => ['title'=>'Edit Supplier','parent'=>'Suppliers','mode'=>'none','breadcrumbs'=>[['label'=>'Home','url'=>'dashboard.php'],['label'=>'Suppliers','url'=>'all-suppliers.php'],['label'=>'Edit Supplier','url'=>null]]],
     'edit-employee.php' => ['title'=>'Edit Employee','parent'=>'Employees','mode'=>'none','breadcrumbs'=>[['label'=>'Home','url'=>'dashboard.php'],['label'=>'Employees','url'=>'all-employees.php'],['label'=>'Edit Employee','url'=>null]]],
@@ -694,8 +731,10 @@ $pageDefinitions = [
         'mode' => 'table',
         'columns' => [
             'Tax Name',
+            'Tax Code',
             'Rate',
             'Applies To',
+            'Calculation',
             'Effective From',
             'Status'
         ],
