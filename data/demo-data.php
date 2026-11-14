@@ -65,14 +65,14 @@ foreach ($demoProductNames as $category => $names) {
 }
 
 $demoSuppliers = [
-    ['id' => 1, 'supplier_name' => 'Al-Madina Wholesale Traders', 'contact_person' => 'Usman Ali', 'phone' => '0301-5550101', 'city' => 'Okara', 'status' => 'Active'],
-    ['id' => 2, 'supplier_name' => 'Hassan General Suppliers', 'contact_person' => 'Hassan Raza', 'phone' => '0302-5550102', 'city' => 'Okara', 'status' => 'Active'],
-    ['id' => 3, 'supplier_name' => 'Punjab Plastic House', 'contact_person' => 'Imran Shah', 'phone' => '0303-5550103', 'city' => 'Lahore', 'status' => 'Active'],
-    ['id' => 4, 'supplier_name' => 'City Stationers & Toys', 'contact_person' => 'Bilal Ahmed', 'phone' => '0304-5550104', 'city' => 'Okara', 'status' => 'Active'],
-    ['id' => 5, 'supplier_name' => 'Bright Home Distributors', 'contact_person' => 'Farhan Iqbal', 'phone' => '0305-5550105', 'city' => 'Lahore', 'status' => 'Active'],
-    ['id' => 6, 'supplier_name' => 'Care & Beauty Wholesale', 'contact_person' => 'Ahsan Malik', 'phone' => '0306-5550106', 'city' => 'Faisalabad', 'status' => 'Active'],
-    ['id' => 7, 'supplier_name' => 'Smart Accessories Supply', 'contact_person' => 'Waqas Tariq', 'phone' => '0307-5550107', 'city' => 'Lahore', 'status' => 'Active'],
-    ['id' => 8, 'supplier_name' => 'Rana Trading Company', 'contact_person' => 'Rana Shahid', 'phone' => '0308-5550108', 'city' => 'Okara', 'status' => 'Active'],
+    ['id' => 1, 'supplier_name' => 'Al-Madina Wholesale Traders', 'contact_person' => 'Usman Ali', 'phone' => '0301-5550101', 'email' => 'sales@almadina.example.test', 'address' => 'Grain Market, Okara', 'city' => 'Okara', 'status' => 'Active'],
+    ['id' => 2, 'supplier_name' => 'Hassan General Suppliers', 'contact_person' => 'Hassan Raza', 'phone' => '0302-5550102', 'email' => 'orders@hassangeneral.example.test', 'address' => 'Depalpur Road, Okara', 'city' => 'Okara', 'status' => 'Active'],
+    ['id' => 3, 'supplier_name' => 'Punjab Plastic House', 'contact_person' => 'Imran Shah', 'phone' => '0303-5550103', 'email' => 'info@punjabplastic.example.test', 'address' => 'Shah Alam Market, Lahore', 'city' => 'Lahore', 'status' => 'Active'],
+    ['id' => 4, 'supplier_name' => 'City Stationers & Toys', 'contact_person' => 'Bilal Ahmed', 'phone' => '0304-5550104', 'email' => 'sales@citystationers.example.test', 'address' => 'College Road, Okara', 'city' => 'Okara', 'status' => 'Active'],
+    ['id' => 5, 'supplier_name' => 'Bright Home Distributors', 'contact_person' => 'Farhan Iqbal', 'phone' => '0305-5550105', 'email' => 'orders@brighthome.example.test', 'address' => 'Brandreth Road, Lahore', 'city' => 'Lahore', 'status' => 'Active'],
+    ['id' => 6, 'supplier_name' => 'Care & Beauty Wholesale', 'contact_person' => 'Ahsan Malik', 'phone' => '0306-5550106', 'email' => 'care@beautywholesale.example.test', 'address' => 'Rail Bazaar, Faisalabad', 'city' => 'Faisalabad', 'status' => 'Active'],
+    ['id' => 7, 'supplier_name' => 'Smart Accessories Supply', 'contact_person' => 'Waqas Tariq', 'phone' => '0307-5550107', 'email' => 'sales@smartsupply.example.test', 'address' => 'Hall Road, Lahore', 'city' => 'Lahore', 'status' => 'Active'],
+    ['id' => 8, 'supplier_name' => 'Rana Trading Company', 'contact_person' => 'Rana Shahid', 'phone' => '0308-5550108', 'email' => 'rana@trading.example.test', 'address' => 'M.A. Jinnah Road, Okara', 'city' => 'Okara', 'status' => 'Active'],
 ];
 
 $demoCustomers = [
@@ -87,14 +87,14 @@ $demoCustomers = [
 ];
 
 $demoEmployees = [
-    ['id' => 1, 'employee_name' => 'Ahmed Raza', 'role' => 'Store Manager', 'branch' => 'Main Branch', 'status' => 'Active'],
-    ['id' => 2, 'employee_name' => 'Hamza Tariq', 'role' => 'Cashier', 'branch' => 'Main Branch', 'status' => 'Active'],
-    ['id' => 3, 'employee_name' => 'Fatima Noor', 'role' => 'Inventory Assistant', 'branch' => 'Main Branch', 'status' => 'Active'],
-    ['id' => 4, 'employee_name' => 'Usman Javed', 'role' => 'Sales Assistant', 'branch' => 'Main Branch', 'status' => 'Active'],
+    ['id' => 1, 'employee_name' => 'Ahmed Raza', 'role' => 'Store Manager', 'phone' => '0300-5550301', 'email' => 'ahmed.raza@example.test', 'branch' => 'Main Branch', 'status' => 'Active'],
+    ['id' => 2, 'employee_name' => 'Hamza Tariq', 'role' => 'Cashier', 'phone' => '0300-5550302', 'email' => 'hamza.tariq@example.test', 'branch' => 'Main Branch', 'status' => 'Active'],
+    ['id' => 3, 'employee_name' => 'Fatima Noor', 'role' => 'Inventory Assistant', 'phone' => '0300-5550303', 'email' => 'fatima.noor@example.test', 'branch' => 'Main Branch', 'status' => 'Active'],
+    ['id' => 4, 'employee_name' => 'Usman Javed', 'role' => 'Sales Assistant', 'phone' => '0300-5550304', 'email' => 'usman.javed@example.test', 'branch' => 'Main Branch', 'status' => 'Active'],
 ];
 
 $demoBranches = [
-    ['id' => 1, 'branch_name' => 'Main Branch', 'branch_code' => 'OKR-001', 'address' => 'Main Bazaar, Okara, Punjab', 'status' => 'Active'],
+    ['id' => 1, 'branch_name' => 'Main Branch', 'branch_code' => 'OKR-001', 'address' => 'Main Bazaar, Okara, Punjab', 'phone' => '044-2550100', 'manager' => 'Ahmed Raza', 'status' => 'Active'],
 ];
 
 $demoExpenses = [
