@@ -41,7 +41,7 @@ switch ($currentPage) {
         break;
     case 'all-branches.php':
         $tableDemoData = array_map(static function ($b) {
-            return ['branch_name'=>$b['branch_name'],'branch_code'=>$b['branch_code'],'address'=>$b['address'],'phone'=>'044-2550100','status'=>$b['status']];
+            return ['branch_name'=>$b['branch_name'],'branch_code'=>$b['branch_code'],'address'=>$b['address'],'phone'=>$b['phone'],'status'=>$b['status']];
         }, $demoBranches);
         break;
     case 'all-suppliers.php':
@@ -56,7 +56,7 @@ switch ($currentPage) {
         break;
     case 'all-expenses.php':
         $tableDemoData = array_map(static function ($e) use ($money) {
-            return ['expense'=>$e['id'],'date'=>'2026-11-'.str_pad((string)(10+$e['id']),2,'0',STR_PAD_LEFT),'expense_type'=>$e['type'],'branch'=>'Main Branch','amount'=>$money($e['amount']),'status'=>'Paid'];
+            return ['expense'=>$e['id'],'date'=>$e['date'],'expense_type'=>$e['type'],'branch'=>$e['branch'],'amount'=>$money($e['amount']),'status'=>'Paid'];
         }, $demoExpenses);
         break;
     case 'expense-types.php':
