@@ -45,7 +45,7 @@ switch ($currentPage) {
         }, $demoBranches);
         break;
     case 'all-suppliers.php':
-        $tableDemoData = array_map(static function ($s) {
+        $tableDemoData = array_map(static function ($s) use ($money) {
             return ['supplier_name'=>$s['supplier_name'],'contact_person'=>$s['contact_person'],'phone'=>$s['phone'],'email'=>$s['email'],'address'=>$s['address'],'city'=>$s['city'],'opening_balance'=>$money($s['opening_balance']),'payment_terms'=>$s['payment_terms'],'status'=>$s['status']];
         }, $demoSuppliers);
         break;
