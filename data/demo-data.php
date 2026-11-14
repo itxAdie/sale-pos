@@ -220,3 +220,16 @@ $demoProfitLoss = [[
     'expenses' => number_format($demoExpenseTotal, 2, '.', ''),
     'net_profit_loss' => number_format($demoNetProfit, 2, '.', ''),
 ]];
+
+
+/**
+ * Illustrative stock movement history. These rows are examples only and do
+ * not post back into the demo product quantities above.
+ */
+$demoStockMovements = [
+    ['date'=>'2026-11-14 09:10','reference'=>'OPEN-0001','product'=>'Microfiber Duster','movement'=>'Opening Balance','change'=>40,'reason'=>'Initial stock setup','employee'=>'Ahmed Raza'],
+    ['date'=>'2026-11-14 10:25','reference'=>'ADJ-0008','product'=>'USB Cable','movement'=>'Stock In','change'=>12,'reason'=>'Physical count correction','employee'=>'Fatima Noor'],
+    ['date'=>'2026-11-13 17:40','reference'=>'ADJ-0007','product'=>'Face Powder','movement'=>'Stock Out','change'=>-3,'reason'=>'Damaged goods','employee'=>'Ahmed Raza'],
+    ['date'=>'2026-11-13 15:15','reference'=>'PUR-26-0014','product'=>'A4 Notebook','movement'=>'Purchase Received','change'=>50,'reason'=>'Supplier delivery','employee'=>'Fatima Noor'],
+    ['date'=>'2026-11-12 19:05','reference'=>'ADJ-0006','product'=>'Plastic Mug','movement'=>'Stock Out','change'=>-2,'reason'=>'Sample / internal use','employee'=>'Hamza Tariq'],
+];
