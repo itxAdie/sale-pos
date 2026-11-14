@@ -69,6 +69,11 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
+                    <a href="./inventory-adjustments.php" class="nav-link<?= in_array($currentPage, ['inventory-adjustments.php','add-stock-adjustment.php'], true) ? ' active' : '' ?>">
+                      <i class="nav-icon bi bi-arrow-left-right"></i><p>Stock Adjustments</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
                     <a 
                     href="./all-products.php"
                   class="nav-link<?= $currentPage === 'all-products.php' ? ' active' : '' ?>"
