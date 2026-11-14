@@ -19,6 +19,11 @@ $money = static function ($amount) {
 };
 $tableDemoData = [];
 switch ($currentPage) {
+    case 'inventory-adjustments.php':
+        $tableDemoData = array_map(static function ($m) {
+            return ['date'=>$m['date'],'reference'=>$m['reference'],'product'=>$m['product'],'movement'=>$m['movement'],'quantity_change'=>($m['change'] > 0 ? '+' : '') . $m['change'],'reason'=>$m['reason'],'employee'=>$m['employee']];
+        }, $demoStockMovements);
+        break;
     case 'all-purchases.php':
         $tableDemoData = array_map(static function ($p) use ($money) {
             return ['reference'=>$p['reference'],'date'=>$p['date'],'supplier'=>$p['supplier'],'branch'=>$p['branch'],'total'=>$money($p['total']),'paid'=>$money($p['paid']),'status'=>$p['status']];
