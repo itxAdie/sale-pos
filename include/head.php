@@ -1,7 +1,7 @@
   <!--begin::Head-->
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title><?= htmlspecialchars(($pageTitle ?? 'Dashboard') . ' | Nomi Shopping Mall', ENT_QUOTES, 'UTF-8') ?></title>
+    <title><?= htmlspecialchars(isset($pageTitle) ? $pageTitle . ' | Nomi Shopping Mall' : 'Nomi Shopping Mall', ENT_QUOTES, 'UTF-8') ?></title>
 
     <!--begin::Theme Init (prevents flash of incorrect theme on load, #6043)-->
     <script>
@@ -65,7 +65,7 @@
     <!--end::Accessibility Meta Tags-->
 
     <!--begin::Primary Meta Tags-->
-    <meta name="title" content="<?= htmlspecialchars(($pageTitle ?? 'Nomi Shopping Mall') . ' | Nomi Shopping Mall', ENT_QUOTES, 'UTF-8') ?>" />
+    <meta name="title" content="<?= htmlspecialchars(isset($pageTitle) ? $pageTitle . ' | Nomi Shopping Mall' : 'Nomi Shopping Mall', ENT_QUOTES, 'UTF-8') ?>" />
     <meta name="author" content="ColorlibHQ" />
     <meta
       name="description"
