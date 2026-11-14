@@ -26,27 +26,27 @@ switch ($currentPage) {
         break;
     case 'inventory-adjustments.php':
         $tableDemoData = array_map(static function ($m) {
-            return ['date'=>$m['date'],'reference'=>$m['reference'],'product'=>$m['product'],'movement'=>$m['movement'],'quantity_change'=>($m['change'] > 0 ? '+' : '') . $m['change'],'reason'=>$m['reason'],'employee'=>$m['employee']];
+            return ['date'=>$m['date'],'reference'=>$m['reference'],'product'=>$m['product'],'sku'=>$m['product_sku'],'movement'=>$m['movement'],'quantity_change'=>($m['change'] > 0 ? '+' : '') . $m['change'],'stock_before'=>$m['stock_before'],'stock_after'=>$m['stock_after'],'reason'=>$m['reason'],'employee'=>$m['employee']];
         }, $demoStockMovements);
         break;
     case 'all-purchases.php':
         $tableDemoData = array_map(static function ($p) use ($money) {
-            return ['reference'=>$p['reference'],'date'=>$p['date'],'supplier'=>$p['supplier'],'branch'=>$p['branch'],'total'=>$money($p['total']),'paid_amount'=>$money($p['paid']),'due_amount'=>$money($p['due']),'payment_method'=>$p['payment_method'],'payment_status'=>$p['status']];
+            return ['reference'=>$p['reference'],'date'=>$p['date'],'supplier'=>$p['supplier'],'branch'=>$p['branch'],'items'=>$p['item_count'],'total'=>$money($p['total']),'discount'=>$money($p['discount']),'tax'=>$money($p['tax']),'paid_amount'=>$money($p['paid']),'due_amount'=>$money($p['due']),'payment_method'=>$p['payment_method'],'payment_reference'=>$p['payment_reference'],'received_status'=>$p['received_status'],'payment_status'=>$p['status']];
         }, $demoPurchases);
         break;
     case 'all-products.php':
         $tableDemoData = array_map(static function ($p) use ($money) {
-            return ['product'=>$p['product'],'sku'=>$p['sku'],'barcode'=>$p['barcode'],'category'=>$p['category'],'purchase_price'=>$money($p['purchase_price']),'selling_price'=>$money($p['price']),'pricing_type'=>$p['price_type'],'price_group'=>$p['price_group'],'stock_quantity'=>$p['stock'],'status'=>$p['status']];
+            return ['product'=>$p['product'],'sku'=>$p['sku'],'barcode'=>$p['barcode'],'category'=>$p['category'],'unit'=>$p['unit'],'purchase_price'=>$money($p['purchase_price']),'selling_price'=>$money($p['price']),'pricing_type'=>$p['price_type'],'price_group'=>$p['price_group'],'stock_quantity'=>$p['stock'],'reorder_level'=>$p['reorder_level'],'status'=>$p['status']];
         }, $demoProducts);
         break;
     case 'all-branches.php':
         $tableDemoData = array_map(static function ($b) {
-            return ['branch_name'=>$b['branch_name'],'branch_code'=>$b['branch_code'],'address'=>$b['address'],'phone'=>$b['phone'],'manager'=>$b['manager'],'status'=>$b['status']];
+            return ['branch_name'=>$b['branch_name'],'branch_code'=>$b['branch_code'],'address'=>$b['address'],'city'=>$b['city'],'phone'=>$b['phone'],'manager'=>$b['manager'],'opening_date'=>$b['opening_date'],'status'=>$b['status']];
         }, $demoBranches);
         break;
     case 'all-suppliers.php':
         $tableDemoData = array_map(static function ($s) {
-            return ['supplier_name'=>$s['supplier_name'],'contact_person'=>$s['contact_person'],'phone'=>$s['phone'],'email'=>$s['email'],'address'=>$s['address'],'city'=>$s['city'],'status'=>$s['status']];
+            return ['supplier_name'=>$s['supplier_name'],'contact_person'=>$s['contact_person'],'phone'=>$s['phone'],'email'=>$s['email'],'address'=>$s['address'],'city'=>$s['city'],'opening_balance'=>$money($s['opening_balance']),'payment_terms'=>$s['payment_terms'],'status'=>$s['status']];
         }, $demoSuppliers);
         break;
     case 'all-sales.php':
@@ -56,7 +56,7 @@ switch ($currentPage) {
         break;
     case 'all-expenses.php':
         $tableDemoData = array_map(static function ($e) use ($money) {
-            return ['expense'=>$e['id'],'date'=>$e['date'],'expense_title'=>$e['title'],'expense_type'=>$e['type'],'branch'=>$e['branch'],'amount'=>$money($e['amount']),'payment_method'=>$e['payment_method'],'status'=>'Paid'];
+            return ['expense'=>$e['reference'],'date'=>$e['date'],'expense_title'=>$e['title'],'expense_type'=>$e['type'],'branch'=>$e['branch'],'amount'=>$money($e['amount']),'payment_method'=>$e['payment_method'],'payment_reference'=>'—','description'=>$e['description'],'status'=>$e['status']];
         }, $demoExpenses);
         break;
     case 'expense-types.php':
@@ -64,7 +64,7 @@ switch ($currentPage) {
         break;
     case 'all-employees.php':
         $tableDemoData = array_map(static function ($e) {
-            return ['employee_name'=>$e['employee_name'],'role'=>$e['role'],'phone'=>$e['phone'],'email'=>$e['email'],'branch'=>$e['branch'],'status'=>$e['status']];
+            return ['employee_name'=>$e['employee_name'],'role'=>$e['role'],'phone'=>$e['phone'],'email'=>$e['email'],'branch'=>$e['branch'],'joining_date'=>$e['joining_date'],'employment_type'=>$e['employment_type'],'status'=>$e['status']];
         }, $demoEmployees);
         break;
     case 'branch-ledger.php':
@@ -89,14 +89,10 @@ switch ($currentPage) {
         }, $demoProfitLoss);
         break;
     case 'users.php':
-        $tableDemoData = array_map(static function ($e) {
-            return ['name'=>$e['employee_name'],'username'=>strtolower(str_replace(' ','',$e['employee_name'])),'role'=>$e['role'],'last_login'=>'2026-11-14 09:15','status'=>$e['status']];
-        }, $demoEmployees);
+        $tableDemoData = $demoUsers;
         break;
     case 'tax.php':
-        $tableDemoData = [
-            ['tax_name'=>'Sales Tax (sample)','rate'=>'0%','applies_to'=>'Retail sales','effective_from'=>'2026-01-01','status'=>'Demo / Not configured'],
-        ];
+        $tableDemoData = array_map(static function ($tax) { return ['tax_name'=>$tax['tax_name'],'tax_code'=>$tax['tax_code'],'rate'=>$tax['rate'],'applies_to'=>$tax['applies_to'],'calculation'=>$tax['calculation'],'effective_from'=>$tax['effective_from'],'status'=>$tax['status']]; }, $demoTaxRates);
         break;
 }
 $entityEditRoutes = [
