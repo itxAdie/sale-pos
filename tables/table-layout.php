@@ -19,6 +19,11 @@ $money = static function ($amount) {
 };
 $tableDemoData = [];
 switch ($currentPage) {
+    case 'all-purchases.php':
+        $tableDemoData = array_map(static function ($p) use ($money) {
+            return ['reference'=>$p['reference'],'date'=>$p['date'],'supplier'=>$p['supplier'],'branch'=>$p['branch'],'total'=>$money($p['total']),'paid'=>$money($p['paid']),'status'=>$p['status']];
+        }, $demoPurchases);
+        break;
     case 'all-products.php':
         $tableDemoData = array_map(static function ($p) use ($money) {
             return ['product'=>$p['product'],'sku'=>$p['sku'],'category'=>$p['category'],'price'=>$money($p['price']),'stock'=>$p['stock'],'status'=>$p['status']];
