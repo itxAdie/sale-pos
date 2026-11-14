@@ -352,6 +352,4 @@
       sparkline('#sparkline-1', [1000, 1200, 920, 927, 931, 1027, 819, 930, 1021]);
       sparkline('#sparkline-2', [515, 519, 520, 522, 652, 810, 370, 627, 319, 630, 921]);
       sparkline('#sparkline-3', [15, 19, 20, 22, 33, 27, 31, 27, 19, 30, 21]);
-    </script>
-    <script src="../js/table-data.js"></script>
-    <!--end::Script-->
+    </script>\n<!--end::Script-->
