@@ -294,6 +294,9 @@ $pageDefinitions = [
             'Paid Amount',
             'Due Amount',
             'Payment Method',
+            'Items',
+            'Cashier',
+            'Discount',
             'Payment Status'
         ],
         'breadcrumbs' => [
