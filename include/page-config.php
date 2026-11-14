@@ -66,7 +66,7 @@ $pageDefinitions = [
     'product-add.php' => [
         'title' => 'Add Product',
         'parent' => 'Products',
-        'mode' => 'form',
+        'mode' => 'none',
         'fields' => [
             [
                 'label' => 'Product Name',
