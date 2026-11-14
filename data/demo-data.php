@@ -224,6 +224,21 @@ $demoProfitLoss = [[
 ]];
 
 
+$demoSupplierPayments = [];
+foreach ($demoPurchases as $purchase) {
+    if ((int) $purchase['paid'] > 0) {
+        $demoSupplierPayments[] = [
+            'date'=>$purchase['date'],
+            'reference'=>'PAY-' . substr($purchase['reference'], -4),
+            'supplier'=>$purchase['supplier'],
+            'purchase_reference'=>$purchase['reference'],
+            'amount'=>$purchase['paid'],
+            'method'=>['Cash','Bank Transfer','Cheque'][$purchase['id'] % 3],
+            'status'=>'Recorded (demo)',
+        ];
+    }
+}
+
 /**
  * Illustrative stock movement history. These rows are examples only and do
  * not post back into the demo product quantities above.
