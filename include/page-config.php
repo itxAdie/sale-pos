@@ -41,8 +41,12 @@ $pageDefinitions = [
         'parent' => 'Products',
         'mode' => 'table',
         'columns' => [
-            'Product', 'SKU', 'Barcode', 'Category', 'Price', 'Purchase Price',
-            'Price Type', 'Price Group', 'Stock Quantity', 'Status'
+            'Product',
+            'SKU',
+            'Category',
+            'Price',
+            'Stock',
+            'Status'
         ],
         'breadcrumbs' => [
             [
@@ -143,7 +147,11 @@ $pageDefinitions = [
         'parent' => 'Branches',
         'mode' => 'table',
         'columns' => [
-            'Branch Name', 'Branch Code', 'Address', 'Phone', 'Manager', 'Status'
+            'Branch Name',
+            'Branch Code',
+            'Address',
+            'Phone',
+            'Status'
         ],
         'breadcrumbs' => [
             [
@@ -203,7 +211,12 @@ $pageDefinitions = [
         'parent' => 'Suppliers',
         'mode' => 'table',
         'columns' => [
-            'Supplier Name', 'Contact Person', 'Phone', 'Email', 'Address', 'City', 'Status'
+            'Supplier Name',
+            'Contact Person',
+            'Phone',
+            'Email',
+            'Address',
+            'Status'
         ],
         'breadcrumbs' => [
             [
@@ -267,7 +280,12 @@ $pageDefinitions = [
         'parent' => 'Sales',
         'mode' => 'table',
         'columns' => [
-            'Invoice #', 'Date', 'Customer', 'Branch', 'Total', 'Paid Amount', 'Due Amount', 'Payment Method', 'Payment Status'
+            'Invoice #',
+            'Date',
+            'Customer',
+            'Branch',
+            'Total',
+            'Payment Status'
         ],
         'breadcrumbs' => [
             [
@@ -331,7 +349,12 @@ $pageDefinitions = [
         'parent' => 'Expenses',
         'mode' => 'table',
         'columns' => [
-            'Expense #', 'Expense Title', 'Date', 'Expense Type', 'Branch', 'Amount', 'Payment Method', 'Status'
+            'Expense #',
+            'Date',
+            'Expense Type',
+            'Branch',
+            'Amount',
+            'Status'
         ],
         'breadcrumbs' => [
             [
