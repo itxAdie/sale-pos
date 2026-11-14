@@ -94,7 +94,86 @@ switch ($currentPage) {
   <?php include '../layout/page-header.php'; ?>
   <div class="app-content">
     <div class="container-fluid">
-      <?php if ($pageMode === 'form'): ?>
+      <?php if ($currentPage === 'product-add.php'): ?>
+        <form class="card" autocomplete="off" onsubmit="return false;">
+          <div class="card-header"><h3 class="card-title">Product information</h3><span class="badge text-bg-light">UI preview</span></div>
+          <div class="card-body">
+            <div class="row g-3">
+              <div class="col-lg-8">
+                <label class="form-label" for="product-name">Product name <span class="text-danger">*</span></label>
+                <input class="form-control" id="product-name" placeholder="e.g. Stainless Steel Tea Strainer" required>
+              </div>
+              <div class="col-lg-4">
+                <label class="form-label" for="product-sku">SKU <span class="text-danger">*</span></label>
+                <input class="form-control" id="product-sku" placeholder="e.g. NOM-0101" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="product-category">Category <span class="text-danger">*</span></label>
+                <select class="form-select" id="product-category" required>
+                  <option value="">Choose category</option>
+                  <?php foreach ($demoCategories as $category): ?><option><?= htmlspecialchars($category, ENT_QUOTES, 'UTF-8') ?></option><?php endforeach; ?>
+                  <option value="Other">Other / create later</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="product-unit">Unit</label>
+                <select class="form-select" id="product-unit"><option>Piece</option><option>Pack</option><option>Pair</option><option>Dozen</option><option>Kg</option><option>Gram</option><option>Liter</option><option>Box</option></select>
+              </div>
+              <div class="col-12"><hr class="my-1"><h5 class="mb-0">Pricing</h5><p class="text-body-secondary small mb-0">Choose a configurable fixed-price group or set an individual selling price.</p></div>
+              <div class="col-md-4">
+                <label class="form-label" for="price-type">Pricing method</label>
+                <select class="form-select" id="price-type"><option value="fixed">Fixed-price group</option><option value="variable">Variable / custom price</option></select>
+              </div>
+              <div class="col-md-4" id="fixed-group-wrap">
+                <label class="form-label" for="fixed-group">Fixed-price group</label>
+                <select class="form-select" id="fixed-group"><option value="100">Rs. 100</option><option value="250">Rs. 250</option><option value="500">Rs. 500</option><option value="750">Rs. 750</option><option value="1000">Rs. 1,000</option><option value="custom">Custom group (configure later)</option></select>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="selling-price">Selling price (PKR) <span class="text-danger">*</span></label>
+                <input class="form-control" type="number" min="0" step="0.01" id="selling-price" placeholder="0.00" required>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="purchase-price">Purchase cost (PKR)</label>
+                <input class="form-control" type="number" min="0" step="0.01" id="purchase-price" placeholder="0.00">
+              </div>
+              <div class="col-12"><hr class="my-1"><h5 class="mb-0">Barcode & inventory</h5></div>
+              <div class="col-md-6">
+                <label class="form-label" for="product-barcode">Existing manufacturer barcode</label>
+                <input class="form-control" id="product-barcode" placeholder="Scan or enter existing barcode">
+                <div class="form-text">Keep the manufacturer's barcode when one already exists.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="internal-barcode">Internal barcode preview</label>
+                <div class="input-group"><input class="form-control" id="internal-barcode" value="Generated when needed" readonly><button class="btn btn-outline-secondary" type="button" id="preview-barcode">Preview</button></div>
+                <div class="form-text">Code 128 will be generated only when no usable barcode is supplied.</div>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="opening-stock">Opening stock</label>
+                <input class="form-control" type="number" min="0" step="1" id="opening-stock" value="0">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="reorder-level">Low-stock alert at</label>
+                <input class="form-control" type="number" min="0" step="1" id="reorder-level" value="5">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="product-status">Status</label>
+                <select class="form-select" id="product-status"><option>Active</option><option>Inactive</option></select>
+              </div>
+              <div class="col-12"><div class="alert alert-info mb-0"><i class="bi bi-info-circle me-1"></i>This is a front-end prototype. Product creation, barcode persistence and stock posting will be connected when the backend is implemented.</div></div>
+            </div>
+          </div>
+          <div class="card-footer d-flex flex-wrap gap-2"><button class="btn btn-primary" type="button" disabled>Save product (backend pending)</button><a href="all-products.php" class="btn btn-outline-secondary">Cancel</a></div>
+        </form>
+        <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          const type=document.getElementById('price-type'), group=document.getElementById('fixed-group'), price=document.getElementById('selling-price'), wrap=document.getElementById('fixed-group-wrap');
+          function syncPrice(){const fixed=type.value==='fixed';wrap.classList.toggle('d-none',!fixed);if(fixed&&group.value!=='custom')price.value=group.value;price.readOnly=fixed&&group.value!=='custom';}
+          type.addEventListener('change',syncPrice);group.addEventListener('change',syncPrice);syncPrice();
+          document.getElementById('preview-barcode').addEventListener('click',function(){const sku=document.getElementById('product-sku').value.trim().toUpperCase().replace(/[^A-Z0-9]/g,'');document.getElementById('internal-barcode').value=sku?'INT-'+sku:'Enter an SKU first';});
+          document.getElementById('product-barcode').addEventListener('input',function(){document.getElementById('internal-barcode').placeholder=this.value?'Manufacturer barcode supplied; internal barcode not required':'Preview internal Code 128';});
+        });
+        </script>
+      <?php elseif ($pageMode === 'form'): ?>
         <div class="card">
           <div class="card-header"><h3 class="card-title"><?= htmlspecialchars($pageTitle, ENT_QUOTES, 'UTF-8') ?></h3></div>
           <form method="post" action="" autocomplete="off">
