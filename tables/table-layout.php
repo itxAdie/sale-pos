@@ -1,8 +1,9 @@
 <?php
 /**
- * Shared AdminLTE table/form layout.
- * Demo records are injected by page; this remains presentation-only.
+ * Shared AdminLTE table/form layout with deterministic demo records.
+ * Records are presentation-only; no database writes are performed here.
  */
+require_once __DIR__ . '/../data/demo-data.php';
 $pageMode = $pageConfig['mode'] ?? 'table';
 $pageColumns = $pageConfig['columns'] ?? [];
 $pageFields = $pageConfig['fields'] ?? [];
@@ -13,21 +14,77 @@ foreach ($pageColumns as $column) {
     $field = strtolower(trim(preg_replace('/[^a-zA-Z0-9]+/', '_', $column), '_'));
     $tableColumnDefinitions[] = ['title' => $column, 'field' => $field, 'headerSort' => true];
 }
-
+$money = static function ($amount) {
+    return 'Rs. ' . number_format((float) $amount, 2);
+};
 $tableDemoData = [];
-if ($currentPage === 'all-products.php') {
-    require_once __DIR__ . '/../data/demo-data.php';
-    $tableDemoData = array_map(static function ($product) {
-        return [
-            'product' => $product['product'],
-            'sku' => $product['sku'],
-            'category' => $product['category'],
-            'price' => 'Rs. ' . number_format((float) $product['price'], 2),
-            'stock' => $product['stock'],
-            'status' => $product['status'],
+switch ($currentPage) {
+    case 'all-products.php':
+        $tableDemoData = array_map(static function ($p) use ($money) {
+            return ['product'=>$p['product'],'sku'=>$p['sku'],'category'=>$p['category'],'price'=>$money($p['price']),'stock'=>$p['stock'],'status'=>$p['status']];
+        }, $demoProducts);
+        break;
+    case 'all-branches.php':
+        $tableDemoData = array_map(static function ($b) {
+            return ['branch_name'=>$b['branch_name'],'branch_code'=>$b['branch_code'],'address'=>$b['address'],'phone'=>'044-2550100','status'=>$b['status']];
+        }, $demoBranches);
+        break;
+    case 'all-suppliers.php':
+        $tableDemoData = array_map(static function ($s) {
+            return ['supplier_name'=>$s['supplier_name'],'contact_person'=>$s['contact_person'],'phone'=>$s['phone'],'email'=>'sales@example.test','address'=>$s['city'].', Punjab','status'=>$s['status']];
+        }, $demoSuppliers);
+        break;
+    case 'all-sales.php':
+        $tableDemoData = array_map(static function ($s) use ($money) {
+            return ['invoice'=>$s['invoice'],'date'=>$s['date'],'customer'=>$s['customer'],'branch'=>'Main Branch','total'=>$money($s['total']),'payment_status'=>$s['status']];
+        }, $demoSales);
+        break;
+    case 'all-expenses.php':
+        $tableDemoData = array_map(static function ($e) use ($money) {
+            return ['expense'=>$e['id'],'date'=>'2026-11-'.str_pad((string)(10+$e['id']),2,'0',STR_PAD_LEFT),'expense_type'=>$e['type'],'branch'=>'Main Branch','amount'=>$money($e['amount']),'status'=>'Paid'];
+        }, $demoExpenses);
+        break;
+    case 'expense-types.php':
+        $tableDemoData = $demoExpenseTypes;
+        break;
+    case 'all-employees.php':
+        $tableDemoData = array_map(static function ($e) {
+            return ['employee_name'=>$e['employee_name'],'role'=>$e['role'],'phone'=>'0300-55503'.str_pad((string)$e['id'],2,'0',STR_PAD_LEFT),'email'=>'staff'.$e['id'].'@example.test','branch'=>$e['branch'],'status'=>$e['status']];
+        }, $demoEmployees);
+        break;
+    case 'branch-ledger.php':
+        $tableDemoData = $demoBranchLedger;
+        break;
+    case 'supplier-ledger.php':
+        $tableDemoData = $demoSupplierLedger;
+        break;
+    case 'sales-report.php':
+        $tableDemoData = array_map(static function ($r) use ($money) {
+            return ['date'=>$r['date'],'branch'=>$r['branch'],'invoices'=>$r['invoices'],'gross_sales'=>$money($r['gross_sales']),'discount'=>$money($r['discount']),'net_sales'=>$money($r['net_sales'])];
+        }, $demoSalesReport);
+        break;
+    case 'expense-report.php':
+        $tableDemoData = array_map(static function ($r) use ($money) {
+            return ['date'=>$r['date'],'branch'=>$r['branch'],'expense_type'=>$r['expense_type'],'amount'=>$money($r['amount']),'notes'=>$r['notes']];
+        }, $demoExpenseReport);
+        break;
+    case 'profit-loss.php':
+        $tableDemoData = array_map(static function ($r) use ($money) {
+            return ['period'=>$r['period'],'revenue'=>$money($r['revenue']),'cost_of_goods'=>$money($r['cost_of_goods']),'expenses'=>$money($r['expenses']),'net_profit_loss'=>$money($r['net_profit_loss'])];
+        }, $demoProfitLoss);
+        break;
+    case 'users.php':
+        $tableDemoData = array_map(static function ($e) {
+            return ['name'=>$e['employee_name'],'username'=>strtolower(str_replace(' ','',$e['employee_name'])),'role'=>$e['role'],'last_login'=>'2026-11-14 09:15','status'=>$e['status']];
+        }, $demoEmployees);
+        break;
+    case 'tax.php':
+        $tableDemoData = [
+            ['tax_name'=>'Sales Tax (sample)','rate'=>'0%','applies_to'=>'Retail sales','effective_from'=>'2026-01-01','status'=>'Demo / Not configured'],
         ];
-    }, $demoProducts);
+        break;
 }
+?>
 ?>
 <main class="app-main">
   <?php include '../layout/page-header.php'; ?>
