@@ -697,6 +697,16 @@ $pageConfig = $pageDefinitions[$currentPage] ?? [
     ],
 ];
 
+$pageActionsByPage = [
+    'all-products.php' => [['label' => 'Add Product', 'url' => 'product-add.php']],
+    'all-branches.php' => [['label' => 'Add Branch', 'url' => 'add-branch.php']],
+    'all-suppliers.php' => [['label' => 'Add Supplier', 'url' => 'add-supplier.php']],
+    'all-sales.php' => [['label' => 'Add Sale', 'url' => 'add-sale.php']],
+    'all-expenses.php' => [['label' => 'Add Expense', 'url' => 'add-expense.php']],
+    'all-employees.php' => [['label' => 'Add Employee', 'url' => 'add-employee.php']],
+];
+$pageConfig['actions'] = $pageActionsByPage[$currentPage] ?? [];
+
 $pageTitle = $pageConfig['title'];
 $pageBreadcrumbs = $pageConfig['breadcrumbs'];
 ?>
